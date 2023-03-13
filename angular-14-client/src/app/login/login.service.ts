@@ -13,5 +13,16 @@ export class LoginService {
     return this.http.post('http://localhost:8080/login', usuarioLogin);
   }
 
+  signIncallBack(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http
+        .get('http://localhost:8080/users/count')
+        .subscribe((data) => {
+          resolve(data);
+        });
+    });
+  }
+    
+
  
 }

@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../login/login.service';
 
@@ -9,11 +10,17 @@ import { LoginService } from '../login/login.service';
 export class HomeComponent implements OnInit {
 
   users:any;
-  constructor(private service:LoginService) { }
+  constructor(private http:HttpClient) { }
 
   ngOnInit() {
   }
 
 
-  getUsers(){};
+  getUsers(){
+    console.log('getUsers')
+    this.http.get('http://localhost:8080/users').subscribe(
+      (data) => this.users = data
+    )
+  
+  };
 }
