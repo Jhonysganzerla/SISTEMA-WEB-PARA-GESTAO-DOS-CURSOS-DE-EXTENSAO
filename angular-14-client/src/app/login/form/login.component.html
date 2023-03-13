@@ -1,0 +1,55 @@
+<div class="background-wrap">
+  <div class="background"></div>
+</div>
+
+<form id="accesspanel" action="">
+  <h1 id="litheader">UTFPR - Cursos de Extesão</h1>
+  <div class="inset">
+    <p>
+      <input
+        type="text"
+        #ra="ngModel"
+        required
+        name="ra"
+        [(ngModel)]="usuarioLogin.ra"
+        id="ra"
+        placeholder="RA"
+        (change)="clearMessage()"
+      />
+    </p>
+    <p>
+      <input
+        type="password"
+        #senha="ngModel"
+        required
+        name="password"
+        [(ngModel)]="usuarioLogin.password"
+        id="password"
+        placeholder="Senha"
+        (change)="clearMessage()"
+      />
+    </p>
+  </div>
+
+  <div class="text-center inset text-white">
+    <div *ngIf="(ra.dirty || ra.touched)" >
+      <div *ngIf="ra.errors?.['required']">Nome é obrigatório.</div>
+    </div>
+    <div *ngIf="(senha.dirty || senha.touched)" >
+      <div *ngIf="senha.errors?.['required']">Senha é obrigatório.</div>
+    </div>
+    <p *ngIf="!!this.message">
+      {{ this.message }}
+    </p>
+  </div>
+
+  <p class="p-container">
+    <input
+      type="submit"
+      name="Login"
+      id="go"
+      value="Login"
+      (click)="doLogin()"
+    />
+  </p>
+</form>
