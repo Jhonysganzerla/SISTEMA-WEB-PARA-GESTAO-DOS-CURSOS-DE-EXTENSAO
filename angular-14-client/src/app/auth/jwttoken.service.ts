@@ -6,13 +6,13 @@ import jwtDecode from 'jwt-decode';
 @Injectable()
 export class JWTTokenService {
 
-    jwtToken!: string;
+    jwtToken!: any;
     decodedToken!: { [key: string]: string };
 
     
     constructor() {
         if(!this.jwtToken){
-            this.jwtToken = localStorage.getItem('token') || '';
+            this.jwtToken = localStorage.getItem('token') || null;
         }
     }
 
@@ -24,17 +24,18 @@ export class JWTTokenService {
 
     decodeToken() {
       if (this.jwtToken) {
-      this.decodedToken = jwtDecode(this.jwtToken);
+        this.decodedToken = jwtDecode(this.jwtToken);
       }
     }
 
     getDecodeToken() {
-      return jwtDecode(this.jwtToken);
+      if(this.jwtToken){
+        return jwtDecode(this.jwtToken);
+      }
     }
 
     getUserRa() {
       this.decodeToken();
-      console.log(this.getDecodeToken())
       return this.decodedToken ? this.decodedToken['sub'] : null;
     }
 
