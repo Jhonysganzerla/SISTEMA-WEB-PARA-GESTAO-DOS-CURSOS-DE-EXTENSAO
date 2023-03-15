@@ -1,0 +1,3 @@
+<div *ngIf="message" [ngClass]="message.cssClass">{{message.text}}
+    <span class="close" (click)="clearMessage()">&times;</span>
+</div>

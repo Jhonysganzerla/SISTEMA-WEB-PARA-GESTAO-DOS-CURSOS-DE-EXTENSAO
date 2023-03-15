@@ -1,3 +1,4 @@
+import { AuthService } from './../auth/auth.service';
 import { LoginService } from './../login/login.service';
 import { JWTTokenService } from './../auth/jwttoken.service';
 import { LocalStorageService } from './../shared/localStorageService';
@@ -8,18 +9,19 @@ import {
   RouterStateSnapshot,
   Router,
 } from '@angular/router';
-import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthorizeGuard implements CanActivate {
   constructor(
-    private loginService: LoginService,
     private router: Router,
-    private jwtService: JWTTokenService
+    private authService: AuthService,
+    private jwtService: JWTTokenService,
   ) {}
+
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): any {
+    this.authService.checkIsAuthenticated();
     if (this.jwtService.getUserRa()) {
       if (this.jwtService.isTokenExpired()) {
         this.router.navigate(['/login']);

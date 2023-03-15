@@ -17,10 +17,9 @@ export class HomeComponent implements OnInit {
 
 
   getUsers(){
-    console.log('getUsers')
     this.http.get('http://localhost:8080/users').subscribe(
       (data) => this.users = data
-    )
+    ).unsubscribe();
   
   };
 }

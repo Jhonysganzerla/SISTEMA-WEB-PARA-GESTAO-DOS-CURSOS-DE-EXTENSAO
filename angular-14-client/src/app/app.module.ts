@@ -1,3 +1,4 @@
+import { AuthService } from './auth/auth.service';
 import { JWTTokenService } from './auth/jwttoken.service';
 import { LocalStorageService } from './shared/localStorageService';
 import { UniversalAppInterceptor } from './auth/httpUniversalInterceptor';
@@ -12,9 +13,10 @@ import { LoginService } from './login/login.service';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { AlertComponent } from './alert/alert.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent],
+  declarations: [AppComponent, HomeComponent, AlertComponent],
 
   imports: [
     FormsModule,
@@ -26,6 +28,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
   ],
   providers: [
     LoginService,
+    AuthService,
     LocalStorageService,
     JWTTokenService,
     {

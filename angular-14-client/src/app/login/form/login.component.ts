@@ -1,3 +1,4 @@
+import { AuthService } from './../../auth/auth.service';
 import { JWTTokenService } from './../../auth/jwttoken.service';
 import { LocalStorageService } from './../../shared/localStorageService';
 import { UsuarioLoginDTO } from './../model/usuarioLoginDTO';
@@ -16,17 +17,17 @@ export class LoginComponent implements OnInit {
   message: any;
 
   constructor(private service: LoginService,
-     private localStorageService: LocalStorageService,
       private router:Router,
-      private jwtService: JWTTokenService) { }
+      private authService: AuthService,) { }
 
   ngOnInit() {
+    this.authService.handleLogout();
   }
 
   doLogin() {
     let resp = this.service.login(this.usuarioLogin);
     resp.subscribe({
-      next: (token) => this.salvaToken(token),
+      next: (response) => this.salvaToken(response),
       error: () => this.message = "Usuário ou senha inválidos"
     }
     );
@@ -37,9 +38,8 @@ export class LoginComponent implements OnInit {
   }
 
 
-  salvaToken(token: any) {
-    this.localStorageService.set("token", token['token']);
-    this.jwtService.setToken(token['token']);
+  salvaToken(response: any) {
+    this.authService.handleLogin(response);
     this.router.navigate(['/home']);
   }
   
