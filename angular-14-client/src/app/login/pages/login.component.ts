@@ -1,7 +1,7 @@
-import { AuthService } from './../../auth/auth.service';
-import { JWTTokenService } from './../../auth/jwttoken.service';
-import { LocalStorageService } from './../../shared/localStorageService';
-import { UsuarioLoginDTO } from './../model/usuarioLoginDTO';
+import { AuthService } from '../../auth/auth.service';
+import { JWTTokenService } from '../../auth/jwttoken.service';
+import { LocalStorageService } from '../../shared/localStorageService';
+import { UsuarioLoginDTO } from '../model/usuarioLoginDTO';
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../login.service';
 import { Router } from '@angular/router';

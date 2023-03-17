@@ -44,7 +44,6 @@ public class WebSecurity {
                 .authenticationEntryPoint(authenticationEntryPoint)
             .and()
             .authorizeRequests()
-                .antMatchers(HttpMethod.POST, "/users/**").permitAll()
                 .antMatchers( "/error/**").permitAll()
                 .antMatchers( "/auth/**").permitAll()
                 .antMatchers( "/categories/**").hasAnyRole("USER", "ADMIN")

@@ -1,7 +1,6 @@
 import { FormsModule } from '@angular/forms';
-import { BrowserModule } from '@angular/platform-browser';
 import { LoginService } from './login.service';
-import { LoginComponent } from './form/login.component';
+import { LoginComponent } from './pages/login.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 

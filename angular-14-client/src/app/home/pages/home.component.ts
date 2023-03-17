@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { LoginService } from '../login/login.service';
+import { LoginService } from '../../login/login.service';
 
 @Component({
   selector: 'app-home',
@@ -17,9 +17,10 @@ export class HomeComponent implements OnInit {
 
 
   getUsers(){
-    this.http.get('http://localhost:8080/users').subscribe(
+   
+    this.http.get("http://localhost:8080/usuarios").subscribe(
       (data) => this.users = data
-    ).unsubscribe();
-  
+    )
+    0  
   };
 }

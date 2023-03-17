@@ -39,14 +39,17 @@ public class UsuarioServiceImpl extends CrudServiceImpl<Usuario, Long>  implemen
     }
 
     public Usuario save(Usuario usuario) {
-        if(usuario.getId() == null) {
-            usuario.setPassword(bCryptPasswordEncoder.encode(usuario.getPassword()));
-//            usuario.setProvider(AuthProvider.local);
-            usuario.setUserAuthorities(new HashSet<>());
-            usuario.getUserAuthorities().add(authorityRepository.findById(1L).orElse(new Authority()));
-            this.loadUserByUsername(usuario.getUsername());
+        if (authUserService.checkPermission("ROLE_ADMIN")) {
+
+            if (usuario.getId() == null) {
+                usuario.setPassword(bCryptPasswordEncoder.encode(usuario.getPassword()));
+                usuario.setUserAuthorities(new HashSet<>());
+                usuario.getUserAuthorities().add(authorityRepository.findById(1L).orElse(new Authority()));
+                this.loadUserByUsername(usuario.getUsername());
+            }
+            return usuariosRepository.save(usuario);
         }
-        return usuariosRepository.save(usuario);
+        return null;
     }
 
     @Override

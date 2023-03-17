@@ -35,7 +35,7 @@ public class AuthUserService implements UserDetailsService {
         return SecurityContextHolder.getContext().getAuthentication();
     }
 
-    public Usuario getOperatorLogged(){
+    public Usuario getUsusuarioLogged(){
         return  usuariosRepository.findByRa(this.getUserLogged().getPrincipal().toString());
     }
 

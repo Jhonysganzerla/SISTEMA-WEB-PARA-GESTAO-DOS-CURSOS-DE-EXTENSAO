@@ -51,6 +51,10 @@ public class Usuario implements UserDetails {
     @Size(max = 20, message = "O RA deve ser entre 0 e {max}")
     private String ra;
 
+    @ManyToOne
+    @JoinColumn(name = "cursosgraduacao_id" , referencedColumnName = "id")
+    private CursosGraduacao cursoGraduacao;
+
 //    @Enumerated(EnumType.STRING)
 //    private AuthProvider provider;
 
