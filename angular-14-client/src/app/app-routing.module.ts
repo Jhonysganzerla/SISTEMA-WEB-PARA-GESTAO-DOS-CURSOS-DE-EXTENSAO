@@ -1,9 +1,6 @@
 import { AuthorizeGuard } from './guards/authorizeGuard.guard';
-import { LoginModule } from './login/login.module';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { LoginComponent } from './login/pages/login.component';
-import { HomeComponent } from './home/pages/home.component';
 
 const routes: Routes = [
 
@@ -13,11 +10,11 @@ const routes: Routes = [
   },
 
   
-  { path: 'home',
+  { path: '',
     loadChildren: () => import('./home/home.module').then(m => m.HomeModule), canActivate: [AuthorizeGuard]
   },
 
-  { path: '**', redirectTo: '/home', pathMatch: 'full' },
+  { path: '**', redirectTo: '', pathMatch: 'full' },
 
 ];
 

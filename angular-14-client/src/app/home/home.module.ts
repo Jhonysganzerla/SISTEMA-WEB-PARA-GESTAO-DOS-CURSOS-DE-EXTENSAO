@@ -1,11 +1,10 @@
+import { HomeRoutingModule } from './home-routing.module';
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { SharedModule } from './../shared/shared.module';
 import { HomeService } from './home.service';
 import { HomeComponent } from './pages/home.component';
-import { FormsModule } from '@angular/forms';
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-
-import { HomeRoutingModule } from './home-routing.module';
 
 
 @NgModule({
@@ -16,9 +15,9 @@ import { HomeRoutingModule } from './home-routing.module';
     HomeService,
   ],
   imports: [
+    SharedModule,
     FormsModule,
-    CommonModule,
-    HomeRoutingModule
+    HomeRoutingModule,
   ]
 })
 export class HomeModule { }

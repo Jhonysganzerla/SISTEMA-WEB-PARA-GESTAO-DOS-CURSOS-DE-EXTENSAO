@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
 
   salvaToken(response: any) {
     this.authService.handleLogin(response);
-    this.router.navigate(['/home']);
+    this.router.navigate(['/']);
   }
   
 }

@@ -1,3 +1,9 @@
+import { SharedModule } from './shared/shared.module';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatListModule } from '@angular/material/list';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSidenavModule } from '@angular/material/sidenav';
 import { AuthService } from './auth/auth.service';
 import { JWTTokenService } from './auth/jwttoken.service';
 import { LocalStorageService } from './shared/localStorageService';
@@ -11,12 +17,12 @@ import { AppComponent } from './app.component';
 import { LoginService } from './login/login.service';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AlertComponent } from './alert/alert.component';
+
 
 @NgModule({
   declarations: [AppComponent, AlertComponent],
-
   imports: [
     FormsModule,
     BrowserModule,
@@ -24,6 +30,7 @@ import { AlertComponent } from './alert/alert.component';
     LoginModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    
   ],
   providers: [
     LoginService,
@@ -37,5 +44,6 @@ import { AlertComponent } from './alert/alert.component';
     },
   ],
   bootstrap: [AppComponent],
+  exports: [AlertComponent],
 })
 export class AppModule {}
