@@ -36,9 +36,18 @@ export class AlertService {
         this.keepAfterRouteChange = keepAfterRouteChange;
         this.subject.next({ type: 'error', text: message });
     }
+    
+    errorList(message: Array<String>, keepAfterRouteChange = false) {
+        this.keepAfterRouteChange = keepAfterRouteChange;
+
+        message = message.map((item) => {
+            return item;
+        });
+
+        this.subject.next({ type: 'error', text: message });
+    }
 
     clear() {
-        // clear by calling subject.next() without parameters
         this.subject.next(void 0);
     }
 }

@@ -1,3 +1,4 @@
+import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -24,6 +25,7 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { ConfirmDialogComponent } from './confirmDialog.component';
 
 @NgModule({
   declarations: [],
@@ -31,6 +33,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     FormsModule,
     MatInputModule,
     MatDialogModule,
+    MatIconModule,
+    MatToolbarModule,
     MatSelectModule,
     ReactiveFormsModule,
     MatSidenavModule,

@@ -1,6 +1,5 @@
 package com.sganzerla.model;
 
-import com.sganzerla.annotation.UniqueUsername;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -8,10 +7,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Set;
@@ -25,29 +21,39 @@ public class Usuario implements UserDetails {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
 
-    @Email(message = "Email inválido", regexp = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$")
+    @NotNull
+    @NotEmpty(message = "O email de usuário não pode ser vazio")
+    @NotBlank
+    @Email(message = "Email inválido",
+            regexp = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$")
     private String email;
     @NotNull(message = "A senha não pode ser nula")
-    @Size(min = 6, max = 255)
-    @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).*$")
+//    @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).*$" , message = "A senha deve conter pelo menos uma letra maiúscula, uma minúscula e um número")
     private String password;
 
     @NotNull(message = "O nome de usuário não pode ser nulo")
+    @NotEmpty(message = "O nome de usuário não pode ser vazio")
+    @NotBlank
     @Size(min = 4, max = 255, message = "O tamanho deve ser entre {min} e {max}")
-    @UniqueUsername
     private String nome;
 
     @NotNull(message = "O tipo não pode ser nulo")
-    @Size(max = 10)
+    @NotEmpty(message = "O tipo não pode ser vazio")
+    @NotBlank
+    @Size(max = 25)
     private String tipo; //administrador, professor ou instrutor
 
     @Column(length = 20)
     @NotNull(message = "O telefone não pode ser nulo")
+    @NotEmpty(message = "O telefone não pode ser vazio")
+    @NotBlank
     @Size(max = 20, message = "O telefone deve ser entre 0 e {max}")
     private String telefone;
 
     @Column(length = 20)
     @NotNull(message = "O RA não pode ser nulo")
+    @NotEmpty(message = "O RA de usuário não pode ser vazio")
+    @NotBlank
     @Size(max = 20, message = "O RA deve ser entre 0 e {max}")
     private String ra;
 
@@ -55,10 +61,11 @@ public class Usuario implements UserDetails {
     @JoinColumn(name = "cursosgraduacao_id" , referencedColumnName = "id")
     private CursosGraduacao cursoGraduacao;
 
-//    @Enumerated(EnumType.STRING)
+
+    //    @Enumerated(EnumType.STRING)
 //    private AuthProvider provider;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "users_authorities",
             joinColumns = @JoinColumn(
                     name = "usuario_id", referencedColumnName = "id"),

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("cursosgraduacao")
+    @RequestMapping("cursosgraduacao")
 public class CursosGraduacaoController extends CrudController<CursosGraduacao, Long> {
 
     private final CursosGraduacaoService cursosGraduacaoService;

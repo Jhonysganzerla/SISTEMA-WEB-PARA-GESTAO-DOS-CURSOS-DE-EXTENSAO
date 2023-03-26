@@ -1,0 +1,46 @@
+@import "~@angular/material/theming";
+@include mat-core();
+
+// Define color palettes
+$my-theme-primary: mat-palette($mat-yellow, 800, 600, 900);
+$my-theme-accent: mat-palette($mat-grey, 800, 600, 900);
+$my-theme-warn: mat-palette($mat-red);
+
+// Define typography styles
+$my-theme-typography: mat-typography-config(
+  $headline: mat-typography-level(24px, 1.2, 500),
+  $body-1: mat-typography-level(16px, 1.5, 400),
+  $button: (
+    "font-size": 14px,
+    "font-weight": 500,
+    "text-transform": uppercase,
+    "letter-spacing": 0.5px,
+  ),
+);
+
+// Define theme object with colors and typography
+$my-theme: mat-light-theme(
+  (
+    color: (
+      primary: $my-theme-primary,
+      accent: $my-theme-accent,
+      warn: $my-theme-warn,
+    ),
+    typography: $my-theme-typography,
+  )
+);
+// Include the theme in your application
+@include angular-material-theme($my-theme);
+
+table {
+  width: 100%;
+  table-layout: fixed;
+}
+
+th,
+td {
+  overflow: hidden;
+  width: auto;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

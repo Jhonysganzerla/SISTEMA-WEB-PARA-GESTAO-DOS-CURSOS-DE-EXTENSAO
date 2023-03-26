@@ -1,0 +1,38 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="col-12">
+  <div >
+    <mat-form-field appearance="outline"  class="col-2">
+      <mat-label>ID</mat-label>
+      <input matInput type="number"  readOnly formControlName="id" />
+    </mat-form-field>
+    
+  </div>
+
+    <mat-form-field appearance="outline" class="col-4">
+      <mat-label>Nome</mat-label>
+      <input matInput type="nome" formControlName="nome" />
+      <mat-error *ngIf="form.get('nome')!['invalid']"
+        >Campo obrigatório</mat-error
+      >
+    </mat-form-field>
+
+    <br />
+    <mat-form-field appearance="outline" class="col-6">
+      <mat-label>Descricao</mat-label>
+      <textarea matInput type="descricao" formControlName="descricao"></textarea>
+    </mat-form-field>
+
+  <div class="actions col-12 row">
+    <button mat-raised-button color="primary" type="submit" class="col-2 mr-1">
+      {{ isNew ? "Cadastrar" : "Atualizar" }}
+    </button>
+    <button
+      class="col-2"
+      mat-raised-button
+      color="accent"
+      type="button"
+      (click)="onCancel()"
+    >
+      Cancelar
+    </button>
+  </div>
+</form>

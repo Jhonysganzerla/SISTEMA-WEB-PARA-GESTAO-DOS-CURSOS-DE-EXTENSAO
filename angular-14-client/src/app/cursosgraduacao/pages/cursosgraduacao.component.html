@@ -1,0 +1,81 @@
+<!-- Add new button -->
+<button mat-raised-button color="primary" routerLink="/cursosgraduacao/novo">
+  <mat-icon>add</mat-icon>
+  Adicionar novo
+</button>
+
+<div>
+  <mat-form-field>
+    <mat-label>Filtro</mat-label>
+    <input
+      matInput
+      (blur)="applyFilter(input.value)"
+      placeholder="Ex. Matemática"
+      #input
+    />
+  </mat-form-field>
+</div>
+
+<div class="overflow-auto heght-mat-table mat-elevation-z8">
+  <table
+    mat-table
+    #table
+    [dataSource]="dataSource"
+    class="w-100"
+  >
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef>No.</th>
+      <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="nome">
+      <th mat-header-cell *matHeaderCellDef>Nome</th>
+      <td mat-cell *matCellDef="let element">{{ element.nome }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="descricao">
+      <th mat-header-cell *matHeaderCellDef>Descricao</th>
+      <td mat-cell *matCellDef="let element">{{ element.descricao }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="editar">
+      <th mat-header-cell *matHeaderCellDef>Editar</th>
+      <td mat-cell *matCellDef="let element">
+        <button
+          mat-icon-button
+          matTooltip="Clique para editar"
+          class="iconbutton"
+          color="primary"
+          (click)="edit(element.id)"
+        >
+          <mat-icon>edit</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="deletar">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Delete</th>
+      <td mat-cell *matCellDef="let element">
+        <button
+          mat-icon-button
+          matTooltip="Clique para Deletar"
+          class="iconbutton"
+          (click)="apagar(element.id)"
+          color="warn"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+    <!-- Row shown when there is no matching data. -->
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">
+        Sem dados no filtro "{{ input.value }}"
+      </td>
+    </tr>
+  </table>
+</div>

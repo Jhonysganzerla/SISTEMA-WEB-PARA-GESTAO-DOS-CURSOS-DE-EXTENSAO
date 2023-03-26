@@ -1,3 +1,7 @@
-<div *ngIf="message" [ngClass]="message.cssClass">{{message.text}}
+<div *ngIf="message" [ngClass]="message.cssClass"> 
+    <span *ngFor="let txt of message.text; let i = index">
+        <div *ngIf="i != 0"><br></div>
+        {{txt}}
+    </span>
     <span class="close" (click)="clearMessage()">&times;</span>
 </div>

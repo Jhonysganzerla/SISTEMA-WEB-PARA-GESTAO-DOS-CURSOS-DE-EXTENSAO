@@ -1,5 +1,29 @@
-
-.mat-mdc-form-field {
-    font-size: 14px;
-    width: 100%;
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #424242;
+    color: #fff;
+  }
+  
+  .welcome-message {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+  
+  .sub-message {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+  
+  button {
+    margin-top: 2rem;
+    font-size: 1.2rem;
+    background-color: #ffc107;
+    color: #424242;
   }

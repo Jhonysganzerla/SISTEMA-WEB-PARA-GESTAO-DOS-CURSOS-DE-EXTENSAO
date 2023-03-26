@@ -1,18 +1,9 @@
 package com.sganzerla.model;
 
-import com.sganzerla.annotation.UniqueUsername;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Set;
 
 @Entity
 @Data

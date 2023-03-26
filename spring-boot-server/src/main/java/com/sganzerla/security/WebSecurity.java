@@ -46,8 +46,7 @@ public class WebSecurity {
             .authorizeRequests()
                 .antMatchers( "/error/**").permitAll()
                 .antMatchers( "/auth/**").permitAll()
-                .antMatchers( "/categories/**").hasAnyRole("USER", "ADMIN")
-                .antMatchers( "/products/**").hasAnyRole("ADMIN")
+//                .antMatchers( "/users/**").hasAnyRole("INSTRUTOR","PROFESSOR", "ADMIN")
 
                 .antMatchers("/h2-console/**",
                         "/swagger-resources/**",

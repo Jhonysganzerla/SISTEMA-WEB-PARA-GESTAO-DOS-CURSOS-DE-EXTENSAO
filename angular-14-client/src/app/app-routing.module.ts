@@ -3,19 +3,63 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
-
   {
     path: 'login',
-    loadChildren: () => import('./login/login.module').then(m => m.LoginModule)
+    loadChildren: () =>
+      import('./login/login.module').then((m) => m.LoginModule),
   },
 
-  
-  { path: '',
-    loadChildren: () => import('./home/home.module').then(m => m.HomeModule), canActivate: [AuthorizeGuard]
+  {
+    path: '',
+    loadChildren: () => import('./home/home.module').then((m) => m.HomeModule),
+    canActivate: [AuthorizeGuard],
+  },
+
+  {
+    path: 'usuario',
+    loadChildren: () =>
+      import('./usuario/usuario.module').then((m) => m.UsuarioModule),
+    canActivate: [AuthorizeGuard],
+  },
+
+  {
+    path: 'cursosgraduacao',
+    loadChildren: () =>
+      import('./cursosgraduacao/cursosgraduacao.module').then(
+        (m) => m.CursosGraduacaoModule
+      ),
+    canActivate: [AuthorizeGuard],
+  },
+
+
+  {
+    path: 'tipocursos',
+    loadChildren: () =>
+      import('./tipocursos/tipocursos.module').then(
+        (m) => m.TipoCursosModule
+      ),
+    canActivate: [AuthorizeGuard],
+  },
+
+  {
+    path: 'tipotransporte',
+    loadChildren: () =>
+      import('./tipotransporte/tipotransporte.module').then(
+        (m) => m.TipoTransporteModule
+      ),
+    canActivate: [AuthorizeGuard],
+  },
+
+  {
+    path: 'habilidades',
+    loadChildren: () =>
+      import('./habilidades/habilidades.module').then(
+        (m) => m.HabilidadesModule
+      ),
+    canActivate: [AuthorizeGuard],
   },
 
   { path: '**', redirectTo: '', pathMatch: 'full' },
-
 ];
 
 @NgModule({

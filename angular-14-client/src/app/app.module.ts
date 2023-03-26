@@ -19,10 +19,12 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AlertComponent } from './alert/alert.component';
+import { ConfirmDialogComponent } from './shared/confirmDialog.component';
+import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/material/core';
 
 
 @NgModule({
-  declarations: [AppComponent, AlertComponent],
+    declarations: [AppComponent, AlertComponent, ConfirmDialogComponent],
   imports: [
     FormsModule,
     BrowserModule,
@@ -30,13 +32,14 @@ import { AlertComponent } from './alert/alert.component';
     LoginModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    
+    SharedModule,
   ],
   providers: [
     LoginService,
     AuthService,
     LocalStorageService,
     JWTTokenService,
+    {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher},
     {
       provide: HTTP_INTERCEPTORS,
       useClass: UniversalAppInterceptor,
@@ -44,6 +47,6 @@ import { AlertComponent } from './alert/alert.component';
     },
   ],
   bootstrap: [AppComponent],
-  exports: [AlertComponent],
+  exports: [AlertComponent, ConfirmDialogComponent],
 })
 export class AppModule {}

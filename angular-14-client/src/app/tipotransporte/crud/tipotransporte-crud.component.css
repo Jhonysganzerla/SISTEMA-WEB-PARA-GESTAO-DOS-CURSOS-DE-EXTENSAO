@@ -1,0 +1,10 @@
+.form-row {
+  display: inline-flex;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.form-group {
+  flex: 1;
+  margin-right: 10px;
+}
