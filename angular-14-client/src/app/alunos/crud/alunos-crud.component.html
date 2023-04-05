@@ -1,0 +1,70 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="col-12">
+  <div >
+    <mat-form-field appearance="outline"  class="col-2">
+      <mat-label>ID</mat-label>
+      <input matInput type="number" readonly formControlName="id" />
+    </mat-form-field>
+    
+  </div>
+
+    <mat-form-field appearance="outline" class="col-4">
+      <mat-label>Nome</mat-label>
+      <input matInput type="nome" formControlName="nome" />
+      <mat-error *ngIf="form.get('nome')!['invalid']"
+        >Campo obrigatório</mat-error
+      >
+    </mat-form-field>
+
+    <br />
+
+
+    <mat-form-field appearance="outline" class="col-4">
+      <mat-label>Telefone</mat-label>
+      <input matInput type="text" formControlName="telefone" telefoneMask maxlength="15" />
+      <mat-error *ngIf="form.get('telefone')!['invalid']"
+        >Campo obrigatório</mat-error>
+    </mat-form-field>
+
+
+    <mat-form-field appearance="outline" class="col-4">
+      <mat-label>Email</mat-label>
+      <input matInput type="email" formControlName="email" />
+      <mat-error *ngIf="form.get('email')!['invalid']"
+        >Campo obrigatório</mat-error
+      >
+    </mat-form-field>
+
+    <br />  
+
+    <mat-form-field appearance="outline" class="col-4">
+      <mat-label>Nome do Contato</mat-label>
+      <input matInput formControlName="nomeContato" />
+      <mat-error *ngIf="form.get('nomeContato')!['invalid']"
+        >Campo obrigatório</mat-error
+      >
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="col-4">
+      <mat-label>Telefone do Contato</mat-label>
+      <input matInput type="text" formControlName="telefoneContato" telefoneMask minlength="15" maxlength="15" />
+      <mat-error *ngIf="form.get('telefoneContato')!['invalid']"
+        >Campo obrigatório</mat-error
+      >
+    </mat-form-field>
+
+
+  <div class="actions col-12 row">
+    <button mat-raised-button color="primary" type="submit" class="col-2 mr-1">
+      {{ isNew ? "Cadastrar" : "Atualizar" }}
+    </button>
+    <button
+      class="col-2"
+      mat-raised-button
+      color="accent"
+      type="button"
+      (click)="onCancel()"
+    >
+      Cancelar
+    </button>
+  </div>
+</form>

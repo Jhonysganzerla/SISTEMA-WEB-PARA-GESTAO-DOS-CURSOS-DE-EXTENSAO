@@ -30,7 +30,7 @@ export class CursosGraduacaoCrudComponent implements OnInit {
     });
 
     this.form = this.formBuilder.group({
-      id: new FormControl({value: '', disabled: true}),
+      id: [''],
       nome: ['', Validators.required],
       descricao: ['', Validators.required],
     });

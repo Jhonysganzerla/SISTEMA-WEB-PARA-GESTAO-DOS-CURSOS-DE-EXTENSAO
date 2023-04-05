@@ -1,8 +1,8 @@
 package com.sganzerla.controller;
 
-import com.sganzerla.model.Usuario;
+import com.sganzerla.model.Alunos;
+import com.sganzerla.service.AlunosService;
 import com.sganzerla.service.CrudService;
-import com.sganzerla.service.UsuariosService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,12 +11,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("alunos")
-public class AlunosController extends CrudController<Usuario, Long> {
+public class AlunosController extends CrudController<Alunos, Long> {
 
-    private final UsuariosService usuariosService;
+    private final AlunosService alunosService;
     @Override
-    protected CrudService<Usuario, Long> getService() {
-        return this.usuariosService;
+    protected CrudService<Alunos, Long> getService() {
+        return this.alunosService;
     }
 
 }

@@ -23,6 +23,15 @@ const routes: Routes = [
   },
 
   {
+    path: 'alunos',
+    loadChildren: () =>
+      import('./alunos/alunos.module').then(
+        (m) => m.AlunosModule
+      ),
+    canActivate: [AuthorizeGuard],
+  },
+
+  {
     path: 'cursosgraduacao',
     loadChildren: () =>
       import('./cursosgraduacao/cursosgraduacao.module').then(

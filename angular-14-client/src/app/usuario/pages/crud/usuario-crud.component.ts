@@ -33,7 +33,7 @@ export class UsuarioCrudComponent implements OnInit {
     });
 
     this.form = this.formBuilder.group({
-      id: [null],
+      id: [''],
       nome: ['', Validators.required],
       email: ['', Validators.required],
       password: ['', !this.isNew ? Validators.required : ''],
