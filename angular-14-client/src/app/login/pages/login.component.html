@@ -52,4 +52,9 @@
       (click)="doLogin()"
     />
   </p>
+
+
+  <!--Arrumar-->
+  <a class="text-primary" (click)="setEsqueciSenhaTrue()">Esqueceu sua senha?</a>
+  <p *ngIf="esqueciSenha" class="text-center inset text-white">Entre em contato com o respónsavel caso tenha esquecido sua senha</p>
 </form>

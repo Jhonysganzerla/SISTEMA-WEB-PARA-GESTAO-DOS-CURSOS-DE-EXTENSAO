@@ -1,0 +1,82 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="col-12">
+  <div >
+    <mat-form-field appearance="outline"  class="col-2">
+      <mat-label>ID</mat-label>
+      <input matInput type="number" readonly formControlName="id" />
+    </mat-form-field>
+    
+  </div>
+
+    <mat-form-field appearance="outline" class="col-4">
+      <mat-label>Nome</mat-label>
+      <input matInput type="nome" formControlName="nome" />
+      <mat-error *ngIf="form.get('nome')!['invalid']"
+        >Campo obrigatório</mat-error
+      >
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="col-4">
+     <mat-label> Nivel </mat-label>
+      <mat-select formControlName="nivel">
+        <mat-option value="Básico">Básico</mat-option>
+        <mat-option value="Intermediário">Intermediário</mat-option>
+        <mat-option value="Avançado">Avançado</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <br />
+    <mat-form-field appearance="outline" class="col-8 ">
+      <mat-label>Descricao</mat-label>
+      <textarea matInput type="descricao" formControlName="descricao"></textarea>
+    </mat-form-field>
+
+    <br />
+
+    <mat-form-field appearance="outline" class="col-3">
+      <mat-label>Conteudo</mat-label>
+      <input matInput type="conteudo" formControlName="conteudo"/>
+    </mat-form-field>
+
+
+    
+    <mat-form-field appearance="outline" class="col-3">
+      <mat-label>Tipo do Curso</mat-label>
+      <mat-select formControlName="tipoCursos">
+        <mat-option
+          *ngFor="let curso of cursosTipoOptions"
+          [value]="curso"
+          >{{ curso.nome }}</mat-option
+        >
+      </mat-select>
+      <mat-error *ngIf="form.get('tipoCursos')!['invalid']"
+        >Campo obrigatório</mat-error
+      >
+    </mat-form-field>
+
+    <br />
+
+    <!-- Tipo do curso -->
+
+    <mat-form-field appearance="outline" class="col-6">
+      <mat-label>Observacoes</mat-label>
+      <textarea matInput type="observacao" formControlName="observacao"></textarea>
+    </mat-form-field>
+
+
+
+  <div class="actions col-12 row">
+    <button mat-raised-button color="primary" type="submit" class="col-2 mr-1">
+      {{ isNew ? "Cadastrar" : "Atualizar" }}
+    </button>
+    <button
+      class="col-2"
+      mat-raised-button
+      color="accent"
+      type="button"
+      (click)="onCancel()"
+    >
+      Cancelar
+    </button>
+  </div>
+</form>
+

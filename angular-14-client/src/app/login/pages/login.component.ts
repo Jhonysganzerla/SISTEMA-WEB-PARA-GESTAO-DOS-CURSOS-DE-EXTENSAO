@@ -1,10 +1,8 @@
-import { AuthService } from '../../auth/auth.service';
-import { JWTTokenService } from '../../auth/jwttoken.service';
-import { LocalStorageService } from '../../shared/localStorageService';
-import { UsuarioLoginDTO } from '../model/usuarioLoginDTO';
-import { Component, OnInit } from '@angular/core';
-import { LoginService } from '../login.service';
-import { Router } from '@angular/router';
+import {AuthService} from '../../auth/auth.service';
+import {UsuarioLoginDTO} from '../model/usuarioLoginDTO';
+import {Component, OnInit} from '@angular/core';
+import {LoginService} from '../login.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -15,6 +13,12 @@ export class LoginComponent implements OnInit {
 
   usuarioLogin: UsuarioLoginDTO = {ra : "", password: ""};
   message: any;
+  esqueciSenha: boolean = false;
+
+
+  setEsqueciSenhaTrue(){
+    this.esqueciSenha = true;
+  }
 
   constructor(private service: LoginService,
       private router:Router,
@@ -42,5 +46,4 @@ export class LoginComponent implements OnInit {
     this.authService.handleLogin(response);
     this.router.navigate(['/']);
   }
-  
 }
