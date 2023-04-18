@@ -1,0 +1,110 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="col-12">
+  <div>
+    <mat-form-field appearance="outline" class="col-2">
+      <mat-label>ID</mat-label>
+      <input matInput type="number" readonly formControlName="id" />
+    </mat-form-field>
+  </div>
+  <br />
+
+  <mat-form-field appearance="outline" class="col-3">
+    <mat-label>Data Inicio</mat-label>
+    <input matInput type="date" formControlName="dataInicio" />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="col-3">
+    <mat-label>Data Fim</mat-label>
+    <input matInput type="date" formControlName="dataFim" />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="col-3">
+    <mat-label>Hora Inicio</mat-label>
+    <input matInput type="time" formControlName="horaInicio" />
+  </mat-form-field>
+
+  <br />
+
+  <mat-form-field appearance="outline" class="col-3">
+    <mat-label>Carga Horaria</mat-label>
+    <input matInput type="number" formControlName="cargaHoraria" />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="col-3">
+    <mat-label>Duracao</mat-label>
+    <input matInput type="number" formControlName="duracao" />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="col-3">
+    <mat-label>Dia da Semana</mat-label>
+    <mat-select formControlName="diaSemana">
+      <mat-option value="1">Segunda</mat-option>
+      <mat-option value="2">Terça</mat-option>
+      <mat-option value="3">Quarta</mat-option>
+      <mat-option value="4">Quinta</mat-option>
+      <mat-option value="5">Sexta</mat-option>
+      <mat-option value="6">Sabado</mat-option>
+      <mat-option value="7">Domingo</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="col-3">
+    <mat-label>Local</mat-label>
+    <input matInput type="text" formControlName="local" />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="col-3">
+    <mat-label>Sala</mat-label>
+    <input matInput type="text" formControlName="sala" />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="col-3">
+    <mat-label>Requisitos</mat-label>
+    <input matInput type="text" formControlName="requisitos" />
+  </mat-form-field>
+
+  <br />
+
+  <mat-form-field appearance="outline" class="col-3">
+    <mat-label>Cursos</mat-label>
+    <mat-select formControlName="cursos">
+      <mat-option *ngFor="let curso of cursosOptions" [value]="curso">{{
+        curso.nome
+      }}</mat-option>
+    </mat-select>
+    <mat-error *ngIf="form.get('cursos')!['invalid']"
+    >Campo obrigatório</mat-error
+  >
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="col-3">
+    <mat-label>Equipe</mat-label>
+    <mat-select formControlName="equipeCursos">
+      <mat-option *ngFor="let equipe of equipeCursosOptions" [value]="equipe">{{
+        equipe.papel
+      }}</mat-option>
+    </mat-select>
+    <mat-error *ngIf="form.get('equipeCursos')!['invalid']"
+        >Campo obrigatório</mat-error
+      >
+  </mat-form-field>
+
+        
+
+
+  <br />
+
+  <div class="actions col-12 row">
+    <button mat-raised-button color="primary" type="submit" class="col-2 mr-1">
+      {{ isNew ? "Cadastrar" : "Atualizar" }}
+    </button>
+    <button
+      class="col-2"
+      mat-raised-button
+      color="accent"
+      type="button"
+      (click)="onCancel()"
+    >
+      Cancelar
+    </button>
+  </div>
+</form>

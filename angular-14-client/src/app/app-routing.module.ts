@@ -59,6 +59,15 @@ const routes: Routes = [
   },
 
   {
+    path: 'turma',
+    loadChildren: () =>
+      import('./turmacursos/turmacursos.module').then(
+        (m) => m.TurmaCursosModule
+      ),
+    canActivate: [AuthorizeGuard],
+  },
+
+  {
     path: 'tipotransporte',
     loadChildren: () =>
       import('./tipotransporte/tipotransporte.module').then(

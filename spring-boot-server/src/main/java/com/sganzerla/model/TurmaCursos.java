@@ -1,12 +1,15 @@
 package com.sganzerla.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.google.api.client.util.DateTime;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.sql.Date;
 import java.sql.Time;
 import java.time.Duration;
 
@@ -14,21 +17,15 @@ import java.time.Duration;
 @Data
 public class TurmaCursos {
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private DateTime dataInicio;
-
-    private DateTime dataFim;
-
-    private Time horaInicio;
-
-    private Time CargaHoraria;
-    private Duration duracao;
-
-    @Size(max = 15, message = "O tamanho do diasemana deve no máximo {max} caracteres")
-    private Integer diaSemana;
-
+    private Date dataInicio;
+    private Date dataFim;
+    private String horaInicio;
+    private String cargaHoraria;
+    private String duracao;
+    private String diaSemana;
     @Size(max = 50, message = "O tamanho do local deve no máximo {max} caracteres")
     private String local;
     @Size(max = 50, message = "O tamanho da sala deve no máximo {max} caracteres")
@@ -45,7 +42,6 @@ public class TurmaCursos {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cursos_id", referencedColumnName = "id")
     private Cursos cursos;
-
 
 }
 
