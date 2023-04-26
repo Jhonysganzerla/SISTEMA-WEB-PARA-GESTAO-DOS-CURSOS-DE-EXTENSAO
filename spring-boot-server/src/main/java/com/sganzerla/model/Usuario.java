@@ -1,7 +1,6 @@
 package com.sganzerla.model;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 import lombok.ToString;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -13,8 +12,7 @@ import java.util.Collection;
 import java.util.Set;
 
 @Entity
-@Getter
-@Setter
+@Data
 @ToString
 public class Usuario implements UserDetails {
     @Id

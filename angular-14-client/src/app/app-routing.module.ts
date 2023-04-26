@@ -77,6 +77,15 @@ const routes: Routes = [
   },
 
   {
+    path: 'equipe',
+    loadChildren: () =>
+      import('./equipecursos/equipecursos.module').then(
+        (m) => m.EquipeCursosModule
+      ),
+    canActivate: [AuthorizeGuard],
+  },
+
+  {
     path: 'habilidades',
     loadChildren: () =>
       import('./habilidades/habilidades.module').then(

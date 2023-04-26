@@ -1,0 +1,135 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="col-12">
+  <div >
+    <mat-form-field appearance="outline"  class="col-2">
+      <mat-label>ID</mat-label>
+      <input matInput type="number" readonly formControlName="id" />
+    </mat-form-field>
+    
+  </div>
+
+    <mat-form-field appearance="outline" class="col-4">
+      <mat-label>Papel</mat-label>
+      <input matInput type="papel" formControlName="papel" />
+      <mat-error *ngIf="form.get('papel')!['invalid']"
+        >Campo obrigatório</mat-error
+      >
+    </mat-form-field>
+
+    
+    <mat-form-field appearance="outline" class="col-3">
+      <mat-label>Transporte</mat-label>
+      <mat-select formControlName="transporte">
+        <mat-option
+          *ngFor="let transporte of transportesTipoOptions"
+          [value]="transporte"
+          >{{ transporte.nome }}</mat-option
+        >
+      </mat-select>
+      <mat-error *ngIf="form.get('transporte')!['invalid']"
+        >Campo obrigatório</mat-error
+      >
+    </mat-form-field>
+
+    <br />
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Novo</th>
+          <th scope="col">ID</th>
+          <th scope="col">Nome</th>
+          <th scope="col">Email</th>
+          <th scope="col">Remover</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let usuario of getUsuarios(); let i = index">
+
+          <ng-template #novo>
+            <td>
+              <button
+                mat-icon-button
+                matTooltip="Clique para adicionar"
+                (click)="adicionarUsuario()"
+              >
+                <mat-icon>add</mat-icon>
+              </button>
+            </td>
+
+            <td colspan="3">
+
+              <mat-form-field appearance="outline" class="col-12">
+                <mat-label>Usuario</mat-label>
+                <mat-select formControlName="usuario">
+                  <mat-option
+                    *ngFor="let usuario of usuariosOptions"
+                    [value]="usuario"
+                    >{{ usuario.nome }}</mat-option
+                  >
+                </mat-select>
+              </mat-form-field>
+
+            </td>
+
+            <td>
+              <button
+                mat-icon-button
+                matTooltip="Clique para Deletar"
+                class="iconbutton"
+                (click)="removerUsuario(i)"
+              >
+                <mat-icon>delete</mat-icon>
+              </button>
+            </td>
+
+          </ng-template>
+
+          <ng-container *ngIf="usuario.id != null;else novo">
+
+          <td>
+            <button
+              mat-icon-button
+              matTooltip="Clique para adicionar"
+              (click)="adicionarUsuario()">
+              <mat-icon>add</mat-icon>
+            </button>
+          </td>
+
+          <td>{{ usuario.id }}</td>
+          <td>{{ usuario.nome }}</td>
+          <td>{{ usuario.email }}</td>
+          <td>
+            <button
+              mat-icon-button
+              matTooltip="Clique para Deletar"
+              class="iconbutton"
+              (click)="removerUsuario(i)"
+            >
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        </tr>
+      </tbody>
+      
+    </table>
+
+
+
+  <div class="actions col-12 row">
+    <button mat-raised-button color="primary" type="submit" class="col-2 mr-1">
+      {{ isNew ? "Cadastrar" : "Atualizar" }}
+    </button>
+    <button
+      class="col-2"
+      mat-raised-button
+      color="accent"
+      type="button"
+      (click)="onCancel()"
+    >
+      Cancelar
+    </button>
+  </div>
+</form>
+

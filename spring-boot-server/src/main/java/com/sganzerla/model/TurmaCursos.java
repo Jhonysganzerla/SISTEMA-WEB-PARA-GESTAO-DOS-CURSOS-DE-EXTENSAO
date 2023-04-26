@@ -1,17 +1,11 @@
 package com.sganzerla.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.google.api.client.util.DateTime;
 import lombok.Data;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.sql.Date;
-import java.sql.Time;
-import java.time.Duration;
 
 @Entity
 @Data

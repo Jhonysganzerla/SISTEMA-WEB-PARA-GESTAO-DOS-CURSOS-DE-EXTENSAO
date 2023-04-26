@@ -5,6 +5,8 @@ import lombok.Data;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Data
@@ -21,8 +23,9 @@ public class EquipeCursos {
     @JoinColumn(name = "transporte_id", referencedColumnName = "id")
     private TipoTransporte transporte;
 
-    @JoinColumn(name = "usuario_id", referencedColumnName = "id")
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private Usuario usuario;
-
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinTable(name = "equipecursos_usuarios",
+            joinColumns = @JoinColumn(name = "equipecursos_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "usuario_id", referencedColumnName = "id"))
+    private List<Usuario> usuarios;
 }
