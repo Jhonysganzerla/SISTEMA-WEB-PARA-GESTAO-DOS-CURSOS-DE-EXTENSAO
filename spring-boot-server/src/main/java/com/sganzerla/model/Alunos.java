@@ -2,12 +2,10 @@ package com.sganzerla.model;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 @Entity
 @Data
@@ -33,5 +31,8 @@ public class Alunos {
     @NotBlank(message = "O telefone do contato do aluno deve ser preenchido")
     @Size(max = 20, message = "O tamanho  do telefone deve no máximo {max} caracteres")
     private String telefoneContato;
+
+    @Transient
+    private List<TurmaCurso> lstTurmaCursos;
 
 }

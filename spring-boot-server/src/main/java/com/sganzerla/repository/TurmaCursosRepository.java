@@ -1,7 +1,11 @@
 package com.sganzerla.repository;
 
-import com.sganzerla.model.TurmaCursos;
+import com.sganzerla.model.TurmaCurso;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface TurmaCursosRepository extends JpaRepository<TurmaCursos, Long> {
+import java.util.List;
+
+public interface TurmaCursosRepository extends JpaRepository<TurmaCurso, Long> {
+
+    List<TurmaCurso> findAllByIdIn(List<Long> idList);
 }

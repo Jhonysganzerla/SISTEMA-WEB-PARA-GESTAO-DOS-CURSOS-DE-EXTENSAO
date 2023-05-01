@@ -3,16 +3,20 @@ package com.sganzerla.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.sql.Date;
 
 @Entity
 @Data
-public class TurmaCursos {
+public class TurmaCurso {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NotEmpty(message = "O nome da turma deve ser preenchido")
+    private String nome;
 
     private Date dataInicio;
     private Date dataFim;
@@ -28,12 +32,12 @@ public class TurmaCursos {
     private String requisitos;
 
     @NotNull(message = "A equipe deve ser preenchida")
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "equipecursos_id", referencedColumnName = "id")
     private EquipeCursos equipeCursos;
 
     @NotNull(message = "O curso deve ser preenchido")
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "cursos_id", referencedColumnName = "id")
     private Cursos cursos;
 

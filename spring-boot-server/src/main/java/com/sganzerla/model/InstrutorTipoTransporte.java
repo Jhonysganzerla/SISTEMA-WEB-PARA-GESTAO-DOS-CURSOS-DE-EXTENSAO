@@ -21,7 +21,7 @@ public class InstrutorTipoTransporte {
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "turmacursos_id", referencedColumnName = "id")
-    private TurmaCursos turmaCursos;
+    private TurmaCurso turmaCurso;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "equipecursos_id", referencedColumnName = "id")

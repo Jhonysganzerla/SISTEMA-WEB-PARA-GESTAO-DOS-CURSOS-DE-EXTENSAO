@@ -43,6 +43,7 @@ export class TurmaCursosCrudComponent implements OnInit {
 
     this.form = this.formBuilder.group({
       id: [''],
+      nome: ['', Validators.required],
       dataInicio: [''],
       dataFim: [''],
       horaInicio: [''],
@@ -63,7 +64,8 @@ export class TurmaCursosCrudComponent implements OnInit {
         this.turmaCursosService.getCurso(this.turmacursosId).subscribe((turmacursos) => {
           this.form.patchValue({
             id: turmacursos.id,
-            dataInicio: turmacursos.dataInicio,            
+            dataInicio: turmacursos.dataInicio,
+            nome: turmacursos.nome,            
             dataFim: turmacursos.dataFim,
             horaInicio: turmacursos.horaInicio,
             cargaHoraria: turmacursos.cargaHoraria,

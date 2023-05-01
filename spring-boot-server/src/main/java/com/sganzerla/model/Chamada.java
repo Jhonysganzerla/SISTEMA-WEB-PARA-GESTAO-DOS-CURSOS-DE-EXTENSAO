@@ -6,8 +6,6 @@ import lombok.Data;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.sql.Time;
-import java.time.Duration;
 
 @Entity
 @Data
@@ -23,13 +21,13 @@ public class Chamada {
     private Boolean presenca;
 
     @Size(max = 50, message = "O tamanho do conteudo ministrado deve no máximo {max} caracteres")
-    private String conteudoMinistrado;
+    private String conteudoministrado;
 
 
     @NotNull(message = "O aluno deve ser preenchido")
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "alunocurso_id", referencedColumnName = "id")
-    private AlunoCurso alunoCurso;
+    @JoinColumn(name = "alunoturmacurso_id", referencedColumnName = "id")
+    private AlunoTurmaCurso alunoturmacurso;
 
 
 }

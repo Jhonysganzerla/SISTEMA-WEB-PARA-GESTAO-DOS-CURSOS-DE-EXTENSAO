@@ -1,3 +1,6 @@
+import { AlunoTurmaCurso } from "src/app/alunoturmacurso/model/alunoturmacurso";
+import { TurmaCursos } from "src/app/turmacursos/model/turmacursos";
+
 export class Aluno {
   id: Number;
   nome: Text;
@@ -5,4 +8,5 @@ export class Aluno {
   email: Text;
   nomeContato: Text;
   telefoneContato: Text;
+  lstTurmaCursos: any;
 }

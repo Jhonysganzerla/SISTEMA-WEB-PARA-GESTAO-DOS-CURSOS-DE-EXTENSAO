@@ -7,6 +7,16 @@
   </div>
   <br />
 
+  <mat-form-field appearance="outline" class="col-8">
+    <mat-label>Nome</mat-label>
+    <input matInput type="nome" formControlName="nome" />
+    <mat-error *ngIf="form.get('nome')!['invalid']"
+      >Campo obrigatório</mat-error
+    >
+  </mat-form-field>
+
+  <br />
+
   <mat-form-field appearance="outline" class="col-3">
     <mat-label>Data Inicio</mat-label>
     <input matInput type="date" formControlName="dataInicio" />
@@ -87,9 +97,6 @@
         >Campo obrigatório</mat-error
       >
   </mat-form-field>
-
-        
-
 
   <br />
 

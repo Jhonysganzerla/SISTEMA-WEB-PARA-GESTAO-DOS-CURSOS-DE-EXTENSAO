@@ -1,59 +1,126 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()" class="col-12">
-  <div >
-    <mat-form-field appearance="outline"  class="col-2">
+  <div>
+    <mat-form-field appearance="outline" class="col-2">
       <mat-label>ID</mat-label>
       <input matInput type="number" readonly formControlName="id" />
     </mat-form-field>
-    
   </div>
 
-    <mat-form-field appearance="outline" class="col-4">
-      <mat-label>Nome</mat-label>
-      <input matInput type="nome" formControlName="nome" />
-      <mat-error *ngIf="form.get('nome')!['invalid']"
-        >Campo obrigatório</mat-error
-      >
-    </mat-form-field>
+  <mat-form-field appearance="outline" class="col-4">
+    <mat-label>Nome</mat-label>
+    <input matInput type="nome" formControlName="nome" />
+    <mat-error *ngIf="form.get('nome')!['invalid']"
+      >Campo obrigatório</mat-error
+    >
+  </mat-form-field>
 
-    <br />  
+  <br />
 
-    
-    <mat-form-field appearance="outline" class="col-4">
-      <mat-label>Nome do Contato</mat-label>
-      <input matInput formControlName="nomeContato" />
-      <mat-error *ngIf="form.get('nomeContato')!['invalid']"
-        >Campo obrigatório</mat-error
-      >
-    </mat-form-field>
+  <mat-form-field appearance="outline" class="col-4">
+    <mat-label>Nome do Contato</mat-label>
+    <input matInput formControlName="nomeContato" />
+    <mat-error *ngIf="form.get('nomeContato')!['invalid']"
+      >Campo obrigatório</mat-error
+    >
+  </mat-form-field>
 
-    <mat-form-field appearance="outline" class="col-4">
-      <mat-label>Telefone do Contato</mat-label>
-      <input matInput type="text" formControlName="telefoneContato" telefoneMask minlength="15" maxlength="15" />
-      <mat-error *ngIf="form.get('telefoneContato')!['invalid']"
-        >Campo obrigatório</mat-error
-      >
-    </mat-form-field>
+  <mat-form-field appearance="outline" class="col-4">
+    <mat-label>Telefone do Contato</mat-label>
+    <input
+      matInput
+      type="text"
+      formControlName="telefoneContato"
+      telefoneMask
+      minlength="15"
+      maxlength="15"
+    />
+    <mat-error *ngIf="form.get('telefoneContato')!['invalid']"
+      >Campo obrigatório</mat-error
+    >
+  </mat-form-field>
 
-    <br />
+  <br />
 
+  <mat-form-field appearance="outline" class="col-4">
+    <mat-label>Telefone</mat-label>
+    <input
+      matInput
+      type="text"
+      formControlName="telefone"
+      telefoneMask
+      maxlength="15"
+    />
+    <mat-error *ngIf="form.get('telefone')!['invalid']"
+      >Campo obrigatório</mat-error
+    >
+  </mat-form-field>
 
-    <mat-form-field appearance="outline" class="col-4">
-      <mat-label>Telefone</mat-label>
-      <input matInput type="text" formControlName="telefone" telefoneMask maxlength="15" />
-      <mat-error *ngIf="form.get('telefone')!['invalid']"
-        >Campo obrigatório</mat-error>
-    </mat-form-field>
+  <mat-form-field appearance="outline" class="col-4">
+    <mat-label>Email</mat-label>
+    <input matInput type="email" formControlName="email" />
+    <mat-error *ngIf="form.get('email')!['invalid']"
+      >Campo obrigatório</mat-error
+    >
+  </mat-form-field>
 
+  <br />
 
-    <mat-form-field appearance="outline" class="col-4">
-      <mat-label>Email</mat-label>
-      <input matInput type="email" formControlName="email" />
-      <mat-error *ngIf="form.get('email')!['invalid']"
-        >Campo obrigatório</mat-error
-      >
-    </mat-form-field>
+  <div class="col-12">
+    <div class="row">
+      <div class="col-12">
+        <h3>Lista de Turmas Participadas</h3>
+      </div>
+      <div class="col-12">
+        <table class="table">
+          <thead>
+            <tr>
+              <th style="width: 90%">Nome</th>
+              <th style="width: 10%">Deletar</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let turmaCurso of lstTurmaCursos; let i = index">
+              <td>
+                <mat-form-field appearance="outline" style="display: contents">
+                  <mat-label>Turma</mat-label>
+                  <mat-select [(ngModel)]="turmaCurso.id" [ngModelOptions]="{standalone: true}">
+                    <mat-option
+                      *ngFor="let turma of turmasOptions"
+                      [value]="turma.id"
+                    >
+                      {{ turma.nome }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </td>
+              <td>
+                <button
+                  mat-icon-button
+                  color="warn"
+                  (click)="removeTurmaCurso(i)"
+                >
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="col-12">
+        <button
+          type="button"
+          mat-raised-button
+          color="primary"
+          (click)="addTurmaCurso()"
+        >
+          Adicionar Curso
+        </button>
+      </div>
+    </div>
+  </div>
 
-
+  <br />
+  <br />
 
   <div class="actions col-12 row">
     <button mat-raised-button color="primary" type="submit" class="col-2 mr-1">

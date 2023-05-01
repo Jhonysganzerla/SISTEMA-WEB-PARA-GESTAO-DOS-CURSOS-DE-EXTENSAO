@@ -4,6 +4,7 @@ import { EquipeCursos } from 'src/app/equipecursos/model/equipecursos';
 export class TurmaCursos {
 
   id: number;
+  nome: String;
   dataInicio: Date;
   dataFim: Date;
   horaInicio: any;

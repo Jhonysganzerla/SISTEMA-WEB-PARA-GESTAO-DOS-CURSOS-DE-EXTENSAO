@@ -13,7 +13,7 @@ public class InstrutorCandidatoCursos {
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "turmacursos_id", referencedColumnName = "id")
-    private TurmaCursos turmaCursos;
+    private TurmaCurso turmaCurso;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "usuario_id", referencedColumnName = "id")

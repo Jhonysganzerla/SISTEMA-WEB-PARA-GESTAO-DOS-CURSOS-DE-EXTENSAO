@@ -20,3 +20,5 @@ INSERT INTO public.equipe_cursos (id, papel, transporte_id) VALUES (default, 'Da
 INSERT INTO public.equipecursos_usuarios (equipecursos_id, usuario_id) VALUES (1, 1);
 
 INSERT INTO public.cursos (id, conteudo, descricao, nivel, nome, observacao, id_tipocursos) VALUES (default, 'Java', 'Curso de jva', 'Avançado', 'Java', 'Curso top', 1);
+
+INSERT INTO public.turma_curso (id, carga_horaria, data_fim, data_inicio, dia_semana, duracao, hora_inicio, local, nome, requisitos, sala, cursos_id, equipecursos_id) VALUES (default, null, null, null, null, null, null, null, 'Turma de Java Sábado manhã', null, null, 1, 1);
