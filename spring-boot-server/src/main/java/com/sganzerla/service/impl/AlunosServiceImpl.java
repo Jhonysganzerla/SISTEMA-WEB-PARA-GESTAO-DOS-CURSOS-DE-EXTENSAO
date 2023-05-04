@@ -65,6 +65,7 @@ public class AlunosServiceImpl extends CrudServiceImpl<Alunos, Long>  implements
             for (TurmaCurso turmaCurso : aluno.getLstTurmaCursos()) {
                 AlunoTurmaCurso alunoTurmaCurso = new AlunoTurmaCurso();
                 alunoTurmaCurso.setAluno(aluno.getId());
+                alunoTurmaCurso.setNome(aluno.getNome());
                 alunoTurmaCurso.setTurmaCurso(turmaCurso.getId());
                 alunoTurmaCursoService.save(alunoTurmaCurso);
             }

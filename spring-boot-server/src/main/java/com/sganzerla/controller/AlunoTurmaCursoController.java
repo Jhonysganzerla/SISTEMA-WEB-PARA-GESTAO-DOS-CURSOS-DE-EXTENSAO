@@ -1,8 +1,10 @@
 package com.sganzerla.controller;
 
 import com.sganzerla.model.AlunoTurmaCurso;
+import com.sganzerla.model.Alunos;
 import com.sganzerla.model.TurmaCurso;
 import com.sganzerla.service.AlunoTurmaCursoService;
+import com.sganzerla.service.AlunosService;
 import com.sganzerla.service.CrudService;
 import com.sganzerla.service.TurmaCursosService;
 import lombok.RequiredArgsConstructor;
@@ -23,6 +25,7 @@ public class AlunoTurmaCursoController extends CrudController<AlunoTurmaCurso, L
 
     private final AlunoTurmaCursoService alunoTurmaCursoService;
     private final TurmaCursosService turmaCursosService;
+    private final AlunosService alunosService;
     @Override
     protected CrudService<AlunoTurmaCurso, Long> getService() {
         return this.alunoTurmaCursoService;

@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ChamadaServiceImpl extends CrudServiceImpl<Chamada, Long>  implements ChamadaService {
 
@@ -28,5 +30,10 @@ public class ChamadaServiceImpl extends CrudServiceImpl<Chamada, Long>  implemen
     @Override
     protected JpaRepository<Chamada, Long> getRepository() {
         return this.chamadaRepository;
+    }
+
+    @Override
+    public List<Chamada> findChamadaListByTurma(Long idTurma) {
+        return this.chamadaRepository.findAllByAlunoturmacurso_TurmaCurso(idTurma);
     }
 }

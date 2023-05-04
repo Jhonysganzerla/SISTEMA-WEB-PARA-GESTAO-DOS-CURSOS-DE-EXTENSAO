@@ -39,4 +39,9 @@ public class AlunoTurmaCursoServiceImpl extends CrudServiceImpl<AlunoTurmaCurso,
         return alunoTurmaCursoRepository.findAllByAluno(idAluno);
     }
 
+    @Override
+    public List<AlunoTurmaCurso> findAllByTurmaCurso(Long idTurmaCurso) {
+        return alunoTurmaCursoRepository.findAllByTurmaCurso(idTurmaCurso);
+    }
+
 }

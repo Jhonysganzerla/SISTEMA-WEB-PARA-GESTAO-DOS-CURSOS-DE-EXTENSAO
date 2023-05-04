@@ -9,5 +9,7 @@ public interface AlunoTurmaCursoRepository extends JpaRepository<AlunoTurmaCurso
 
     List<AlunoTurmaCurso> findAllByAluno(Long id);
 
+    List<AlunoTurmaCurso> findAllByTurmaCurso(Long id);
+
 
 }

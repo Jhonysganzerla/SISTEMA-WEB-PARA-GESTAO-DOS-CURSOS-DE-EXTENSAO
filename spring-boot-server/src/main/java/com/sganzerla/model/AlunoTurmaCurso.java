@@ -11,9 +11,9 @@ public class AlunoTurmaCurso {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
 
-
     private Long aluno;
 
+    private String nome;
 
     private Long turmaCurso;
 

@@ -93,6 +93,15 @@ const routes: Routes = [
       ),
     canActivate: [AuthorizeGuard],
   },
+  
+  {
+    path: 'chamada',
+    loadChildren: () =>
+      import('./chamada/chamada.module').then(
+        (m) => m.ChamadaModule
+      ),
+    canActivate: [AuthorizeGuard],
+  },
 
   { path: '**', redirectTo: '', pathMatch: 'full' },
 ];

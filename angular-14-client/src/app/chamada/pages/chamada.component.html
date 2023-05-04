@@ -1,0 +1,81 @@
+<!-- Add new button -->
+
+<h2 class="text-center">Turmas</h2>
+
+<button mat-raised-button color="primary" routerLink="/turma/novo">
+  <mat-icon>add</mat-icon>
+  Adicionar novo
+</button>
+
+<div>
+  <mat-form-field>
+    <mat-label>Filtro</mat-label>
+    <input
+      matInput
+      (blur)="applyFilter(input.value)"
+      placeholder="Ex. Javascript"
+      #input
+    />
+  </mat-form-field>
+</div>
+
+<div class="overflow-auto heght-mat-table mat-elevation-z8">
+  <table mat-table #table [dataSource]="dataSource" class="w-100">
+    
+    <ng-container matColumnDef="abrir">
+      <th mat-header-cell *matHeaderCellDef>Chamada</th>
+      <td mat-cell *matCellDef="let element">
+        <button
+          mat-icon-button
+          matTooltip="Clique para abrir"
+          class="iconbutton"
+          color="primary"
+          (click)="edit(element.id)"
+        >
+          <mat-icon>launch</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef>No.</th>
+      <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="curso">
+      <th mat-header-cell *matHeaderCellDef>Curso</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.nome }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="dataInicio">
+      <th mat-header-cell *matHeaderCellDef>Data Inicio</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.dataInicio | date : "dd/MM/yyyy" }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="diaSemana">
+      <th mat-header-cell *matHeaderCellDef>Dia da Semana</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.diaSemana }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="local">
+      <th mat-header-cell *matHeaderCellDef>Local</th>
+      <td mat-cell *matCellDef="let element">{{ element.local }}</td>
+    </ng-container>
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">
+        Sem dados no filtro "{{ input.value }}"
+      </td>
+    </tr>
+  </table>
+</div>
