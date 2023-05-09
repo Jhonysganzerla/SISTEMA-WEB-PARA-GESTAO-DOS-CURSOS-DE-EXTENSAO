@@ -72,4 +72,30 @@ public class AlunosServiceImpl extends CrudServiceImpl<Alunos, Long>  implements
         }
     }
 
+    @Override
+    public void delete(Long aLong) {
+        deleteAlunoTurmaCurso(findOne(aLong));
+        super.delete(aLong);
+    }
+
+    @Override
+    public void delete(Alunos entity) {
+        deleteAlunoTurmaCurso(entity);
+        super.delete(entity);
+    }
+
+    @Override
+    public void delete(Iterable<Alunos> iterable) {
+        deleteAlunoTurmaCurso(iterable.iterator().next());
+        super.delete(iterable);
+    }
+
+    private void deleteAlunoTurmaCurso(Alunos aluno){
+        if(aluno.getLstTurmaCursos() != null){
+            for (TurmaCurso lstTurmaCurso : aluno.getLstTurmaCursos()) {
+                alunoTurmaCursoService.delete(lstTurmaCurso.getId());
+            }
+        }
+    }
+
 }

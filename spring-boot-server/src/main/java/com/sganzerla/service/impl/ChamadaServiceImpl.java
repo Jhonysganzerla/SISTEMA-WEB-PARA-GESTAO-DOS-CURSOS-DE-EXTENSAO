@@ -9,7 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.Transient;
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ChamadaServiceImpl extends CrudServiceImpl<Chamada, Long>  implements ChamadaService {
@@ -36,4 +39,11 @@ public class ChamadaServiceImpl extends CrudServiceImpl<Chamada, Long>  implemen
     public List<Chamada> findChamadaListByTurma(Long idTurma) {
         return this.chamadaRepository.findAllByAlunoturmacurso_TurmaCurso(idTurma);
     }
+
+    @Override
+    @Transient
+    public List<Chamada> saveAll(List<Chamada> chamadaList) {
+        return this.chamadaRepository.saveAll(chamadaList);
+    }
+
 }

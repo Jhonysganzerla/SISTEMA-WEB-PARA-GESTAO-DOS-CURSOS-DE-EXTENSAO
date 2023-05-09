@@ -22,3 +22,13 @@ INSERT INTO public.equipecursos_usuarios (equipecursos_id, usuario_id) VALUES (1
 INSERT INTO public.cursos (id, conteudo, descricao, nivel, nome, observacao, id_tipocursos) VALUES (default, 'Java', 'Curso de jva', 'Avançado', 'Java', 'Curso top', 1);
 
 INSERT INTO public.turma_curso (id, carga_horaria, data_fim, data_inicio, dia_semana, duracao, hora_inicio, local, nome, requisitos, sala, cursos_id, equipecursos_id) VALUES (default, null, null, null, null, null, null, null, 'Turma de Java Sábado manhã', null, null, 1, 1);
+
+INSERT INTO public.alunos (id, email, nome, nome_contato, telefone, telefone_contato) VALUES (default, '', 'Jhony Sganzerla', 'Jhony Sganzerla', '', '(54) 99619-4742');
+INSERT INTO public.alunos (id, email, nome, nome_contato, telefone, telefone_contato) VALUES (default, 'Jhonysganzerla@hotmail.com', 'Jhony Sganzerla3', 'Jhony Sganzerla', '', '(54) 99619-4743');
+INSERT INTO public.alunos (id, email, nome, nome_contato, telefone, telefone_contato) VALUES (default, '', 'Jhony Sganzerla4', 'Jhony Sganzerla', '', '(54) 99619-4744');
+INSERT INTO public.alunos (id, email, nome, nome_contato, telefone, telefone_contato) VALUES (default, 'Jhonysganzerla@hotmail.com', 'Jhony Sganzerla5', 'Jhony Sganzerla', '', '(54) 99619-4745');
+
+INSERT INTO public.aluno_turma_curso (id, aluno, nome, turma_curso) VALUES (default, 1, 'Jhony Sganzerla', 1);
+INSERT INTO public.aluno_turma_curso (id, aluno, nome, turma_curso) VALUES (default, 2, 'Jhony Sganzerla3', 1);
+INSERT INTO public.aluno_turma_curso (id, aluno, nome, turma_curso) VALUES (default, 3, 'Jhony Sganzerla4', 1);
+INSERT INTO public.aluno_turma_curso (id, aluno, nome, turma_curso) VALUES (default, 4, 'Jhony Sganzerla5', 1);

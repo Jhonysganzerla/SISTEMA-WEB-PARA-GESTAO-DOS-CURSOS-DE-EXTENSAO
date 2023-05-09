@@ -32,10 +32,12 @@ export class UniversalAppInterceptor implements HttpInterceptor {
           if (error instanceof HttpErrorResponse) {
             if (error.status == 400) {
               let errorList: Array<String> = [];
+              if(error.error != undefined){
               error.error.errors.forEach((element: any) => {
                 errorList.push((element.field as String).toLocaleUpperCase() + ' : ' + element.defaultMessage);
               });
               this.alertService.errorList(errorList);
+            }
 
             }
             if (error.status === 401) {

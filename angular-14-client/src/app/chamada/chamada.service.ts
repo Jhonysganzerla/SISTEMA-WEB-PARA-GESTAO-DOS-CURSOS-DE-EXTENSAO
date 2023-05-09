@@ -16,7 +16,7 @@ export class ChamadaService {
   }
 
   save(chamada: Chamada[]) {
-    return this.http.post(`http://localhost:8080/${this.rota}`, chamada);
+    return this.http.post(`http://localhost:8080/${this.rota}/saveChamada`, chamada);
   }
 
 }

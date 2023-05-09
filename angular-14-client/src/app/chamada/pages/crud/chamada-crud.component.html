@@ -1,27 +1,31 @@
 <form (ngSubmit)="onSubmit()" class="col-12">
 
 
-  <table class="table table-striped table-bordered table-hover table-sm text-center">
+  <table class="table table-striped table-bordered table-hover table-sm text-center table-responsive">
     <thead>
       <tr>
-        <th scope="col" style="width:300px">Nome</th>
-        <th scope="col" *ngFor="let data of listaDeDatas; let i = index ; trackBy:trackByFn">
-          <mat-form-field>
-            <input matInput type="date" onblur="setData($event, i)"/>
+        <th scope="col" style="width:fit-content">Nome</th>
+        <th scope="col" *ngFor="let data of listaDeDatas; let i = index ;" >
+
+          <mat-form-field style="width:100px">
+          <b>
+            <input matInput type="date" [ngModelOptions]="{standalone: true}" [ngModel]="listaDeDatas[i] | date:'yyyy-MM-dd'" 
+            (ngModelChange)="changeData($event,i)"
+             />
+            </b>
           </mat-form-field>
-        </th> <!-- data da chamada -->
+        </th>
+        <th> <button mat-raised-button color="primary" type="button" class="col-2 mr-1" (click)="adicionarData()">
+          {{ "Nova" }} </button>
+        </th>
       </tr>
     </thead>
 
-    //CORRIGRI
-
     <tbody>
-      <tr *ngFor="let chamada of listaDeChamada;let i = index ; trackBy:trackByFn">
-        <td><b>{{ chamada.alunoturmacurso.nome }}</b></td>
-        <td  [class]="listaDeChamada[i].presenca">
-            <mat-select [(ngModel)]="listaDeChamada[i].presenca" [ngModelOptions]="{standalone: true}"
-             
-            >
+      <tr *ngFor="let aluno of pegarNomesAlunoFromMap();let i = index ; trackBy:trackByFn">
+        <td><b>{{ aluno }}</b></td>
+        <td  *ngFor="let data of pegaChamadasFromMap(aluno); let i = index ; trackBy:trackByFn" [class]="pegaChamadasFromMap(aluno)![i].presenca ">
+            <mat-select [(ngModel)]="pegaChamadasFromMap(aluno)![i].presenca" [ngModelOptions]="{standalone: true}">
               <mat-option value="Presente">Presente</mat-option>
               <mat-option value="Ausente">Ausente</mat-option>
               <mat-option value="Feriado">Feriado</mat-option>
@@ -31,10 +35,46 @@
       </tr>
     </tbody>
   </table>
-
   <br />
 
-  <!-- Tipo do curso -->
+  <table class="table table-striped table-bordered table-hover table-sm text-center table-responsive"    style="width: fit-content">
+    <thead>
+      <tr>
+        <th style="width:fit-content">Nome</th>
+        <th>
+          <b>
+            {{ "Presente" }}
+          </b>
+        </th>
+        <th>
+          <b>
+            {{ "Ausente" }}
+          </b>
+        </th>
+        <th>
+          <b>
+            {{ "Feriado" }}
+          </b>
+        </th>
+        <th>
+          <b>
+            {{ "Cancelado" }}
+          </b>
+        </th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let aluno of pegarNomesAlunoFromMap();let i = index ; trackBy:trackByFn">
+        <td><b>{{ aluno }}</b></td>
+        <td  *ngFor="let total of totaisPresencaPorAluno(aluno); let i = index ; trackBy:trackByFn">
+            <b>{{ total | json}}</b>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <br />
+
 
 
   <div class="actions col-12 row">

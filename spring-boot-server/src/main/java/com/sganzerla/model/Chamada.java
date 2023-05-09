@@ -1,12 +1,14 @@
 package com.sganzerla.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.google.api.client.util.DateTime;
 import lombok.Data;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.util.Date;
 
 @Entity
 @Data
@@ -15,7 +17,8 @@ public class Chamada {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
 
-    private LocalDateTime data;
+    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    private LocalDate data;
 
     private String presenca; //Presente Ausente Feriado Cancelado
 

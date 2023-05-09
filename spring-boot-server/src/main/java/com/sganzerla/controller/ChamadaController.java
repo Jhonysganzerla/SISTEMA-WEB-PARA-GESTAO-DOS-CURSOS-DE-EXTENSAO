@@ -1,18 +1,18 @@
 package com.sganzerla.controller;
 
-import com.google.api.client.util.DateTime;
 import com.sganzerla.model.AlunoTurmaCurso;
 import com.sganzerla.model.Chamada;
 import com.sganzerla.service.AlunoTurmaCursoService;
 import com.sganzerla.service.ChamadaService;
 import com.sganzerla.service.CrudService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
+import javax.persistence.Transient;
+import java.time.LocalDate;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
@@ -30,9 +30,9 @@ public class ChamadaController extends CrudController<Chamada, Long> {
     }
 
     @GetMapping("/getChamadaFromTurma/{turmaId}")
-    public Iterable<Chamada> getChamadaFromTurma(@PathVariable("turmaId") Long turmaId) {
+    public List<Chamada> getChamadaFromTurma(@PathVariable("turmaId") Long turmaId) {
         List<AlunoTurmaCurso> alunoTurmaCursoList = alunoTurmaCursoService.findAllByTurmaCurso(turmaId);
-        LocalDateTime dataAtual = LocalDateTime.now();
+        LocalDate dataAtual = LocalDate.now();
         if(alunoTurmaCursoList.size() == 0) {
             return null;
         }
@@ -64,7 +64,19 @@ public class ChamadaController extends CrudController<Chamada, Long> {
             }
         }
 
-        return chamadaService.findChamadaListByTurma(turmaId);
+        chamadaListByTurma = chamadaService.findChamadaListByTurma(turmaId);
+        chamadaListByTurma.sort(Comparator.comparing(Chamada::getId));
+        return chamadaListByTurma;
+    }
+
+
+    @PostMapping(value = "/saveChamada", produces = MediaType.APPLICATION_JSON_VALUE)
+    @Transient
+    public ResponseEntity saveChamada(@RequestBody List<Chamada> chamadas) {
+
+        chamadaService.saveAll(chamadas);
+    	return ResponseEntity.ok().build();
+
     }
 
 }
