@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class AlunosServiceImpl extends CrudServiceImpl<Alunos, Long>  implements AlunosService {
 
@@ -38,14 +40,19 @@ public class AlunosServiceImpl extends CrudServiceImpl<Alunos, Long>  implements
 
     @Override
     public Alunos save(Alunos entity) {
+
+        List<TurmaCurso> lstTurmaCursos = entity.getLstTurmaCursos();
         Alunos aluno = super.save(entity);
+        aluno.setLstTurmaCursos(lstTurmaCursos);
         saveAlunoTurmaCurso(aluno);
         return aluno;
     }
 
     @Override
     public Alunos saveAndFlush(Alunos entity) {
+        List<TurmaCurso> lstTurmaCursos = entity.getLstTurmaCursos();
         Alunos aluno = super.saveAndFlush(entity);
+        aluno.setLstTurmaCursos(lstTurmaCursos);
         saveAlunoTurmaCurso(aluno);
         return aluno;
     }
@@ -93,7 +100,7 @@ public class AlunosServiceImpl extends CrudServiceImpl<Alunos, Long>  implements
     private void deleteAlunoTurmaCurso(Alunos aluno){
         if(aluno.getLstTurmaCursos() != null){
             for (TurmaCurso lstTurmaCurso : aluno.getLstTurmaCursos()) {
-                alunoTurmaCursoService.delete(lstTurmaCurso.getId());
+                alunoTurmaCursoService.deleteAllByAlunoAndTurmaCurso(lstTurmaCurso.getId(), aluno.getId());
             }
         }
     }

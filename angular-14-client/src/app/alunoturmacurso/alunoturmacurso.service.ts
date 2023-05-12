@@ -29,6 +29,10 @@ export class AlunoTurmaCursoService {
     return this.http.delete(`http://localhost:8080/${this.rota}/${id}`);
   }
 
+  deleteByAlunoAndTurma(alunoId: number, turmaId: number) {
+    return this.http.delete(`http://localhost:8080/${this.rota}/deleteByAlunoAndTurma/${alunoId}/${turmaId}`);
+  }
+
   save(alunos: AlunoTurmaCurso) {
     return this.http.post(`http://localhost:8080/${this.rota}`, alunos);
   }

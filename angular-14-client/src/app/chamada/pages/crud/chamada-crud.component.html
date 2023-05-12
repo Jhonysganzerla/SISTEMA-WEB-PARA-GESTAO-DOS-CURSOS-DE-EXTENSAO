@@ -61,6 +61,11 @@
             {{ "Cancelado" }}
           </b>
         </th>
+        <th>
+          <b>
+            {{ "% de Presença" }}
+          </b>
+        </th>
       </tr>
     </thead>
 
@@ -68,7 +73,7 @@
       <tr *ngFor="let aluno of pegarNomesAlunoFromMap();let i = index ; trackBy:trackByFn">
         <td><b>{{ aluno }}</b></td>
         <td  *ngFor="let total of totaisPresencaPorAluno(aluno); let i = index ; trackBy:trackByFn">
-            <b>{{ total | json}}</b>
+            <b>{{ total   }}</b>
         </td>
       </tr>
     </tbody>

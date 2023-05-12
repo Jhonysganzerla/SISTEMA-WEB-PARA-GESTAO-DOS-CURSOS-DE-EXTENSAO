@@ -33,12 +33,11 @@ export class UniversalAppInterceptor implements HttpInterceptor {
             if (error.status == 400) {
               let errorList: Array<String> = [];
               if(error.error != undefined){
-              error.error.errors.forEach((element: any) => {
-                errorList.push((element.field as String).toLocaleUpperCase() + ' : ' + element.defaultMessage);
-              });
-              this.alertService.errorList(errorList);
-            }
-
+                error.error.errors.forEach((element: any) => {
+                  errorList.push((element.field as String).toLocaleUpperCase() + ' : ' + element.defaultMessage);
+                });
+                this.alertService.errorList(errorList);
+              }
             }
             if (error.status === 401) {
               this.alertService.error('Acesso não autorizado');
@@ -50,7 +49,7 @@ export class UniversalAppInterceptor implements HttpInterceptor {
               );
             }
             if (error.status === 500) {
-              this.alertService.error(error.message);
+                this.alertService.errorList([ error.error.message]);
             }
           }
         }

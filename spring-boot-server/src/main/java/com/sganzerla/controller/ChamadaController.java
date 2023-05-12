@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.persistence.Transient;
 import java.time.LocalDate;
 import java.util.Comparator;
-import java.util.Date;
 import java.util.List;
 
 
@@ -73,7 +72,6 @@ public class ChamadaController extends CrudController<Chamada, Long> {
     @PostMapping(value = "/saveChamada", produces = MediaType.APPLICATION_JSON_VALUE)
     @Transient
     public ResponseEntity saveChamada(@RequestBody List<Chamada> chamadas) {
-
         chamadaService.saveAll(chamadas);
     	return ResponseEntity.ok().build();
 

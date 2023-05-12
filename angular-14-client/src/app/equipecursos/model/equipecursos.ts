@@ -6,5 +6,5 @@ export class EquipeCursos {
  id: number;
  papel: String;
  transporte: TipoTransporte;
- usuarios: Array<UsuarioEquipe> = []; ;
+ usuarios: Array<Usuario> = [];
 }

@@ -85,6 +85,13 @@ export class TurmaCursosCrudComponent implements OnInit {
   onSubmit() {
     const turmacursos: TurmaCursos = this.form.value;
     if (!this.form.valid) return;
+
+    console.log(turmacursos)
+    let equipe = new EquipeCursos();
+
+    equipe.id = turmacursos.equipeCursos.id;
+
+    turmacursos.equipeCursos = equipe;
     this.turmaCursosService.save(turmacursos).subscribe(() => {
       this.router.navigateByUrl('/turmacursos');
     });

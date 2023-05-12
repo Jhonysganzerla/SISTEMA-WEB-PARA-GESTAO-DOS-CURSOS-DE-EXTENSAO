@@ -13,8 +13,10 @@ export class AppComponent implements OnDestroy{
 
   constructor( public authService: AuthService) {
      this.authService.isAuthenticated.subscribe(
-      (data) => this.isAuthenticated = data
+      (data) =>  {console.log(this.isAuthenticated); this.isAuthenticated = data}
+      
     )
+
   }
 
   ngOnDestroy(): void {

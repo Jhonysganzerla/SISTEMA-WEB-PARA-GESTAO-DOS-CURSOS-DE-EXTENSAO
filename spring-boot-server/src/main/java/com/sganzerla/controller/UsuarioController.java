@@ -1,7 +1,6 @@
 package com.sganzerla.controller;
 
 import com.sganzerla.model.Usuario;
-import com.sganzerla.service.CrudService;
 import com.sganzerla.service.UsuariosService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;

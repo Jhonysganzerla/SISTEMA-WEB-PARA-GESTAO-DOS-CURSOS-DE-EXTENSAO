@@ -3,5 +3,9 @@
         <div *ngIf="i != 0"><br></div>
         {{txt}}
     </span>
+
+    <div *ngIf="message.text.length > 1">
+        {{message.text}}
+    </div>
     <span class="close" (click)="clearMessage()">&times;</span>
 </div>

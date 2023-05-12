@@ -22,6 +22,8 @@ INSERT INTO public.equipecursos_usuarios (equipecursos_id, usuario_id) VALUES (1
 INSERT INTO public.cursos (id, conteudo, descricao, nivel, nome, observacao, id_tipocursos) VALUES (default, 'Java', 'Curso de jva', 'Avançado', 'Java', 'Curso top', 1);
 
 INSERT INTO public.turma_curso (id, carga_horaria, data_fim, data_inicio, dia_semana, duracao, hora_inicio, local, nome, requisitos, sala, cursos_id, equipecursos_id) VALUES (default, null, null, null, null, null, null, null, 'Turma de Java Sábado manhã', null, null, 1, 1);
+INSERT INTO public.turma_curso (id, carga_horaria, data_fim, data_inicio, dia_semana, duracao, hora_inicio, local, nome, requisitos, sala, cursos_id, equipecursos_id) VALUES (default, null, null, null, null, null, null, null, 'Turma de C#', null, null, 1, 1);
+
 
 INSERT INTO public.alunos (id, email, nome, nome_contato, telefone, telefone_contato) VALUES (default, '', 'Jhony Sganzerla', 'Jhony Sganzerla', '', '(54) 99619-4742');
 INSERT INTO public.alunos (id, email, nome, nome_contato, telefone, telefone_contato) VALUES (default, 'Jhonysganzerla@hotmail.com', 'Jhony Sganzerla3', 'Jhony Sganzerla', '', '(54) 99619-4743');

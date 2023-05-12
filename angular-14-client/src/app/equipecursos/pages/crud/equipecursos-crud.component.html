@@ -60,12 +60,11 @@
 
               <mat-form-field appearance="outline" class="col-12">
                 <mat-label>Usuario</mat-label>
-                <mat-select formControlName="usuario">
+                <mat-select (selectionChange)="onSelectUsuario($event.value, i)" >
                   <mat-option
                     *ngFor="let usuario of usuariosOptions"
                     [value]="usuario"
-                    >{{ usuario.nome }}</mat-option
-                  >
+                    >{{ usuario.id }} - {{ usuario.nome }}</mat-option>
                 </mat-select>
               </mat-form-field>
 
@@ -88,6 +87,7 @@
 
           <td>
             <button
+              type="button"
               mat-icon-button
               matTooltip="Clique para adicionar"
               (click)="adicionarUsuario()">
@@ -114,7 +114,6 @@
       </tbody>
       
     </table>
-
 
 
   <div class="actions col-12 row">

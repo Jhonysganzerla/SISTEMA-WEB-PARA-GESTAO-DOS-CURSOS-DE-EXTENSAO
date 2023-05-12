@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.Transient;
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -35,7 +37,7 @@ public class AlunoTurmaCursoServiceImpl extends CrudServiceImpl<AlunoTurmaCurso,
 
 
     @Override
-    public List<AlunoTurmaCurso> findAllByAluno_Id(Long idAluno) {
+    public List<AlunoTurmaCurso> findAllByAluno(Long idAluno) {
         return alunoTurmaCursoRepository.findAllByAluno(idAluno);
     }
 
@@ -44,4 +46,19 @@ public class AlunoTurmaCursoServiceImpl extends CrudServiceImpl<AlunoTurmaCurso,
         return alunoTurmaCursoRepository.findAllByTurmaCurso(idTurmaCurso);
     }
 
+    @Override
+    @Transactional
+    public void deleteByAlunoAndTurma(Long idAluno, Long idTurmaCurso) {
+        this.deleteAllByAlunoAndTurmaCurso(idAluno, idTurmaCurso);
+    }
+
+    public void deleteAllByAluno(Long idAluno) {
+    	alunoTurmaCursoRepository.deleteAllByAluno(idAluno);
+    }
+
+    @Transactional
+    public void deleteAllByAlunoAndTurmaCurso(Long idAluno, Long idTurmaCurso) {
+    	alunoTurmaCursoRepository.deleteAllByAlunoAndTurmaCurso(idAluno, idTurmaCurso);
+    }
 }
+

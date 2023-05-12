@@ -46,6 +46,7 @@ export class ChamadaCrudComponent implements OnInit {
       .getChamadaParaTurma(this.idTurma)
       .subscribe((listaDeChamada) => {
         this.listaDeChamada = listaDeChamada;
+        console.log(this.listaDeChamada)
 
         let set: Set<String> = new Set(
           listaDeChamada.map((chamada) => {
@@ -64,7 +65,6 @@ export class ChamadaCrudComponent implements OnInit {
         });
 
 
-        console.log(this.listaDeChamada)
         this.listaDeChamada.forEach((chamada) => {
           if (this.listaDeChamadasMap.has(chamada.alunoturmacurso.nome)) {
             let aluno = this.listaDeChamadasMap.get(
@@ -109,6 +109,7 @@ export class ChamadaCrudComponent implements OnInit {
       const aluno = this.pegarNomesAlunoFromMap()[i];
       const chamadasDoAluno = this.listaDeChamadasMap.get(aluno);
 
+
       if(chamadasDoAluno){
         for(let j = 0; j < chamadasDoAluno.length; j++){
           const chamada = chamadasDoAluno[j];
@@ -122,7 +123,9 @@ export class ChamadaCrudComponent implements OnInit {
             data1Convertida.setTime( data1Convertida.getTime() + data1Convertida.getTimezoneOffset()*60*1000);
             data2Convertida.setTime( data2Convertida.getTime() + data2Convertida.getTimezoneOffset()*60*1000);
 
-            if(data1Convertida === data2Convertida){
+            console.log('-----');
+            
+            if(this.formatarData(data1Convertida) == this.formatarData(data2Convertida)){
               cont++;
             }
           }
@@ -186,7 +189,10 @@ export class ChamadaCrudComponent implements OnInit {
 
     this.alertService.clear();
 
-    this.listaDeChamada[index].data = event;
+    let a = new Chamada();
+    a.data = event;
+
+    this.listaDeChamada[index] = a;
 
     for (let i = 0; i < this.pegarNomesAlunoFromMap().length; i++) {
       const aluno = this.pegarNomesAlunoFromMap()[i];
@@ -206,7 +212,7 @@ export class ChamadaCrudComponent implements OnInit {
 
   totaisPresencaPorAluno(aluno: String) {
     let relatorio: Map<String, any> = new Map<String, any>();
-    let totais = [0,0,0,0];
+    let totais = [0,0,0,0,""];
 
       let chamadasDoAluno = this.listaDeChamadasMap.get(aluno);
 
@@ -232,6 +238,8 @@ export class ChamadaCrudComponent implements OnInit {
         totais[1] = relatorio.get(aluno)?.total.get('Ausente')-1;
         totais[2] = relatorio.get(aluno)?.total.get('Feriado')-1;
         totais[3] = relatorio.get(aluno)?.total.get('Cancelado')-1;
+
+        totais[4] = Math.round(totais[0]  * 100 / (this.listaDeDatas.length)) + '%';
 
       return totais;
   }

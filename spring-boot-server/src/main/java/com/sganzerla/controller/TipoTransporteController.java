@@ -1,10 +1,8 @@
 package com.sganzerla.controller;
 
 import com.sganzerla.model.TipoTransporte;
-import com.sganzerla.model.Usuario;
 import com.sganzerla.service.CrudService;
 import com.sganzerla.service.TipoTransporteService;
-import com.sganzerla.service.UsuariosService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

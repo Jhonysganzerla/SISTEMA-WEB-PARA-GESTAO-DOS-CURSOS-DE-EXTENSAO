@@ -83,11 +83,10 @@
               <td>
                 <mat-form-field appearance="outline" style="display: contents">
                   <mat-label>Turma</mat-label>
-                  <mat-select [(ngModel)]="turmaCurso.id" [ngModelOptions]="{standalone: true}">
+                  <mat-select [ngModel]="turmaCurso.id" [ngModelOptions]="{standalone: true}"  (selectionChange)="onSelectTurma($event.value, i)">
                     <mat-option
                       *ngFor="let turma of turmasOptions"
-                      [value]="turma.id"
-                    >
+                      [value]="turma.id">
                       {{ turma.nome }}
                     </mat-option>
                   </mat-select>
@@ -95,6 +94,7 @@
               </td>
               <td>
                 <button
+                  type="button"
                   mat-icon-button
                   color="warn"
                   (click)="removeTurmaCurso(i)"

@@ -39,7 +39,7 @@
 
     <ng-container matColumnDef="transporte">
       <th mat-header-cell *matHeaderCellDef>Transporte</th>
-      <td mat-cell *matCellDef="let element">{{ element.transporte | json }}</td>
+      <td mat-cell *matCellDef="let element">{{ element.transporte?.nome }}</td>
     </ng-container>
 
 

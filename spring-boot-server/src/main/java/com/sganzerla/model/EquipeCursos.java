@@ -22,7 +22,7 @@ public class EquipeCursos {
     @JoinColumn(name = "transporte_id", referencedColumnName = "id")
     private TipoTransporte transporte;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "equipecursos_usuarios",
             joinColumns = @JoinColumn(name = "equipecursos_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "usuario_id", referencedColumnName = "id"))
