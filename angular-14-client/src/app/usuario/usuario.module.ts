@@ -9,12 +9,14 @@ import { SharedModule } from '../shared/shared.module';
 import { UsuarioRoutingModule } from './usuario-routing.module';
 import { UsuarioService } from './usuario.service';
 import { UsuarioComponent } from './pages/usuario.component';
+import { TelefoneMaskDirective } from '../shared/telefoneMask.directive';
 
 
 @NgModule({
   declarations: [
     UsuarioComponent,
     UsuarioCrudComponent,
+    TelefoneMaskDirective,
   ],
   providers: [
     UsuarioService,

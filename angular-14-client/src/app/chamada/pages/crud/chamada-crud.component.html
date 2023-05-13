@@ -1,91 +1,7 @@
 <form (ngSubmit)="onSubmit()" class="col-12">
+  <div *ngIf="isTurmaVazia; else turma">
+    <h2>Nenhum aluno encontrado para esta turma</h2>
 
-
-  <table class="table table-striped table-bordered table-hover table-sm text-center table-responsive">
-    <thead>
-      <tr>
-        <th scope="col" style="width:fit-content">Nome</th>
-        <th scope="col" *ngFor="let data of listaDeDatas; let i = index ;" >
-
-          <mat-form-field style="width:100px">
-          <b>
-            <input matInput type="date" [ngModelOptions]="{standalone: true}" [ngModel]="listaDeDatas[i] | date:'yyyy-MM-dd'" 
-            (ngModelChange)="changeData($event,i)"
-             />
-            </b>
-          </mat-form-field>
-        </th>
-        <th> <button mat-raised-button color="primary" type="button" class="col-2 mr-1" (click)="adicionarData()">
-          {{ "Nova" }} </button>
-        </th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <tr *ngFor="let aluno of pegarNomesAlunoFromMap();let i = index ; trackBy:trackByFn">
-        <td><b>{{ aluno }}</b></td>
-        <td  *ngFor="let data of pegaChamadasFromMap(aluno); let i = index ; trackBy:trackByFn" [class]="pegaChamadasFromMap(aluno)![i].presenca ">
-            <mat-select [(ngModel)]="pegaChamadasFromMap(aluno)![i].presenca" [ngModelOptions]="{standalone: true}">
-              <mat-option value="Presente">Presente</mat-option>
-              <mat-option value="Ausente">Ausente</mat-option>
-              <mat-option value="Feriado">Feriado</mat-option>
-              <mat-option value="Cancelado">Cancelado</mat-option>
-            </mat-select>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <br />
-
-  <table class="table table-striped table-bordered table-hover table-sm text-center table-responsive"    style="width: fit-content">
-    <thead>
-      <tr>
-        <th style="width:fit-content">Nome</th>
-        <th>
-          <b>
-            {{ "Presente" }}
-          </b>
-        </th>
-        <th>
-          <b>
-            {{ "Ausente" }}
-          </b>
-        </th>
-        <th>
-          <b>
-            {{ "Feriado" }}
-          </b>
-        </th>
-        <th>
-          <b>
-            {{ "Cancelado" }}
-          </b>
-        </th>
-        <th>
-          <b>
-            {{ "% de Presença" }}
-          </b>
-        </th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <tr *ngFor="let aluno of pegarNomesAlunoFromMap();let i = index ; trackBy:trackByFn">
-        <td><b>{{ aluno }}</b></td>
-        <td  *ngFor="let total of totaisPresencaPorAluno(aluno); let i = index ; trackBy:trackByFn">
-            <b>{{ total   }}</b>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <br />
-
-
-
-  <div class="actions col-12 row">
-    <button mat-raised-button color="primary" type="submit" class="col-2 mr-1">
-      {{ "Atualizar" }}
-    </button>
     <button
       class="col-2"
       mat-raised-button
@@ -93,7 +9,155 @@
       type="button"
       (click)="onCancel()"
     >
-      Cancelar
+      Voltar
     </button>
   </div>
+
+  <ng-template #turma>
+    <table
+      class="table table-striped table-bordered table-hover table-sm text-center table-responsive"
+    >
+      <thead>
+        <tr>
+          <th scope="col" style="width: fit-content">Nome</th>
+          <th scope="col" *ngFor="let data of listaDeDatas; let i = index">
+            <mat-form-field style="width: 100px">
+              <b>
+                <input
+                  matInput
+                  type="date"
+                  [ngModelOptions]="{ standalone: true }"
+                  [ngModel]="listaDeDatas[i] | date : 'yyyy-MM-dd'"
+                  (ngModelChange)="changeData($event, i)"
+                />
+              </b>
+            </mat-form-field>
+          </th>
+          <th>
+            <button
+              mat-raised-button
+              color="primary"
+              type="button"
+              class="col-2 mr-1"
+              (click)="adicionarData()">
+              {{ "Nova" }}
+            </button>
+          </th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr
+          *ngFor="
+            let aluno of pegarNomesAlunoFromMap();
+            let i = index;
+            trackBy: trackByFn
+          "
+        >
+          <td>
+            <b>{{ aluno }}</b>
+          </td>
+          <td
+            *ngFor="
+              let data of pegaChamadasFromMap(aluno);
+              let i = index;
+              trackBy: trackByFn
+            "
+            [class]="pegaChamadasFromMap(aluno)![i].presenca"
+          >
+            <mat-select
+              [(ngModel)]="pegaChamadasFromMap(aluno)![i].presenca"
+              [ngModelOptions]="{ standalone: true }"
+            >
+              <mat-option value="Presente">Presente</mat-option>
+              <mat-option value="Ausente">Ausente</mat-option>
+              <mat-option value="Feriado">Feriado</mat-option>
+              <mat-option value="Cancelado">Cancelado</mat-option>
+            </mat-select>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <br />
+
+    <table
+      class="table table-striped table-bordered table-hover table-sm text-center table-responsive"
+      style="width: fit-content"
+    >
+      <thead>
+        <tr>
+          <th style="width: fit-content">Nome</th>
+          <th>
+            <b>
+              {{ "Presente" }}
+            </b>
+          </th>
+          <th>
+            <b>
+              {{ "Ausente" }}
+            </b>
+          </th>
+          <th>
+            <b>
+              {{ "Feriado" }}
+            </b>
+          </th>
+          <th>
+            <b>
+              {{ "Cancelado" }}
+            </b>
+          </th>
+          <th>
+            <b>
+              {{ "% de Presença" }}
+            </b>
+          </th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr
+          *ngFor="
+            let aluno of pegarNomesAlunoFromMap();
+            let i = index;
+            trackBy: trackByFn
+          "
+        >
+          <td>
+            <b>{{ aluno }}</b>
+          </td>
+          <td
+            *ngFor="
+              let total of totaisPresencaPorAluno(aluno);
+              let i = index;
+              trackBy: trackByFn
+            "
+          >
+            <b>{{ total }}</b>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <br />
+
+    <div class="actions col-12 row">
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        class="col-2 mr-1"
+      >
+        {{ "Atualizar" }}
+      </button>
+      <button
+        class="col-2"
+        mat-raised-button
+        color="accent"
+        type="button"
+        (click)="onCancel()"
+      >
+        Voltar
+      </button>
+    </div>
+  </ng-template>
 </form>

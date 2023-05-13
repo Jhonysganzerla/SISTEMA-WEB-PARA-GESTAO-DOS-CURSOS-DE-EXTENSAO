@@ -20,7 +20,7 @@ export class TurmaCursosComponent implements OnInit {
     this.loadTable();
   }
 
-  displayedColumns: string[] = ['id', 'dataInicio', 'diaSemana', 'local', 'cursos',  'editar', 'deletar'];
+  displayedColumns: string[] = ['id','cursos', 'dataInicio', 'diaSemana', 'local',  'editar', 'deletar'];
 
 
   edit(id: number) {

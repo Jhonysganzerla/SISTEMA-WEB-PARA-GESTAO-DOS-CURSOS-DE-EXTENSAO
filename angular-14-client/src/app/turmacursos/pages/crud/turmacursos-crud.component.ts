@@ -86,7 +86,6 @@ export class TurmaCursosCrudComponent implements OnInit {
     const turmacursos: TurmaCursos = this.form.value;
     if (!this.form.valid) return;
 
-    console.log(turmacursos)
     let equipe = new EquipeCursos();
 
     equipe.id = turmacursos.equipeCursos.id;

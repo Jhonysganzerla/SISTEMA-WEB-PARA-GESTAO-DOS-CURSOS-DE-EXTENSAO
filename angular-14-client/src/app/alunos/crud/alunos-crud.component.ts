@@ -39,7 +39,6 @@ export class AlunosCrudComponent implements OnInit {
       this.turmasOptions = turmas;
     });
 
-    console.log(this.turmasOptions)
 
     this.form = this.formBuilder.group({
       id: '',
@@ -85,7 +84,6 @@ export class AlunosCrudComponent implements OnInit {
       }
     });
 
-    console.log(alunoSave)
 
     if (!this.form.valid) return;
     this.alunosService.save(alunoSave).subscribe(() => {

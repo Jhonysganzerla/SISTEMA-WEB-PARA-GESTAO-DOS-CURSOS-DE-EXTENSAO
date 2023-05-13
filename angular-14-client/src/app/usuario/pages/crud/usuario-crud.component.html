@@ -48,7 +48,7 @@
 
     <mat-form-field appearance="outline" class="col-3">
       <mat-label>Telefone</mat-label>
-      <input matInput formControlName="telefone" />
+      <input  type="text" matInput telefoneMask maxlength="15" formControlName="telefone" />
       <mat-error *ngIf="form.get('telefone')!['invalid']"
         >Campo obrigatório</mat-error
       >

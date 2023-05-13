@@ -55,4 +55,11 @@ export class AuthService {
   emitAuthenticated() {
     this.isAuthenticated.emit(this.authenticated && this.authenticatedUser != undefined);
   }
+
+  temPermissao(permissao: string): boolean {
+    if (this.authenticatedUser?.authorities.map((item) => item.authority).includes(permissao)) {
+      return true;
+    }
+    return false;
+  }
 }

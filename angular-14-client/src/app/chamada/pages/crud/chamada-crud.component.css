@@ -1,4 +1,4 @@
-*{
+*:not(h2){
   font-size: 13px;
 }
 

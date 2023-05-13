@@ -17,6 +17,8 @@ export class ChamadaCrudComponent implements OnInit {
 
   hojeFormatado = new Date().toLocaleDateString()
 
+  isTurmaVazia = false;
+
   listaDeChamadasMap: Map<String, Array<Chamada>> = new Map<
     string,
     Array<Chamada>
@@ -46,7 +48,11 @@ export class ChamadaCrudComponent implements OnInit {
       .getChamadaParaTurma(this.idTurma)
       .subscribe((listaDeChamada) => {
         this.listaDeChamada = listaDeChamada;
-        console.log(this.listaDeChamada)
+
+        if(listaDeChamada == null){
+          this.isTurmaVazia = true;
+          return;
+        }
 
         let set: Set<String> = new Set(
           listaDeChamada.map((chamada) => {
@@ -123,7 +129,6 @@ export class ChamadaCrudComponent implements OnInit {
             data1Convertida.setTime( data1Convertida.getTime() + data1Convertida.getTimezoneOffset()*60*1000);
             data2Convertida.setTime( data2Convertida.getTime() + data2Convertida.getTimezoneOffset()*60*1000);
 
-            console.log('-----');
             
             if(this.formatarData(data1Convertida) == this.formatarData(data2Convertida)){
               cont++;

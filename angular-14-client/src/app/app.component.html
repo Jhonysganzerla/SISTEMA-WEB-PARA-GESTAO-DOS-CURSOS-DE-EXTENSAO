@@ -4,22 +4,20 @@
 <nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="!!isAuthenticated">
   <div class="navbar-nav">
     <a class="nav-item nav-link" routerLink="/">Home</a>
-    <a class="nav-item nav-link" routerLink="/usuario">Usuarios</a>
-    <a class="nav-item nav-link" routerLink="/turma">Turmas</a>
-    <a class="nav-item nav-link" routerLink="/equipe">Equipes</a>
-    <a class="nav-item nav-link" routerLink="/cursos">Cursos</a>
-    <a class="nav-item nav-link" routerLink="/tipocursos">Tipo de Cursos</a>
-    <a class="nav-item nav-link" routerLink="/cursosgraduacao">Graduações</a>
-    <a class="nav-item nav-link" routerLink="/habilidades">Habilidades</a>
-    <a class="nav-item nav-link" routerLink="/tipotransporte">Transportes</a>
-    <a class="nav-item nav-link" routerLink="/alunos">Alunos</a>
-    <a class="nav-item nav-link" routerLink="/chamada">Chamada</a>
+    <a class="nav-item nav-link" *ngIf="pesoPermissao > 0" routerLink="/usuario">Usuarios</a>
+    <a class="nav-item nav-link" *ngIf="pesoPermissao > 1" routerLink="/turma">Turmas</a>
+    <a class="nav-item nav-link" *ngIf="pesoPermissao > 1" routerLink="/equipe">Equipes</a>
+    <a class="nav-item nav-link" *ngIf="pesoPermissao > 1" routerLink="/cursos">Cursos</a>
+    <a class="nav-item nav-link" *ngIf="pesoPermissao > 1" routerLink="/tipocursos">Tipo de Cursos</a>
+    <a class="nav-item nav-link" *ngIf="pesoPermissao > 1" routerLink="/cursosgraduacao">Graduações</a>
+    <a class="nav-item nav-link" *ngIf="pesoPermissao > 1" routerLink="/habilidades">Habilidades</a>
+    <a class="nav-item nav-link" *ngIf="pesoPermissao > 1" routerLink="/tipotransporte">Transportes</a>
+    <a class="nav-item nav-link" *ngIf="pesoPermissao > 1" routerLink="/alunos">Alunos</a>
+    <a class="nav-item nav-link" *ngIf="pesoPermissao > 0" routerLink="/chamada">Chamada</a>
   </div>
   <div class="btn btn-outline-light ml-auto" (click)="logout()">Logout</div>
 
 </nav>
-
-<!-- main content container -->
 
 <div class="body mt-5" >
     <router-outlet></router-outlet>

@@ -40,13 +40,11 @@ export class UniversalAppInterceptor implements HttpInterceptor {
               }
             }
             if (error.status === 401) {
-              this.alertService.error('Acesso não autorizado');
+              this.alertService.errorList(['Acesso não autorizado']);
               setTimeout(() => this.router.navigate(['/login']), 1000);
             }
             if (error.status === 403) {
-              this.alertService.error(
-                'Acesso não autorizado - Permissão negada'
-              );
+              this.alertService.errorList(['Acesso não autorizado - Permissão negada']);
             }
             if (error.status === 500) {
                 this.alertService.errorList([ error.error.message]);

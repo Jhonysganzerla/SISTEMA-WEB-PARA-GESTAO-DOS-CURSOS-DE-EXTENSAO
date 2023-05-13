@@ -1,6 +1,9 @@
 import { AuthorizeGuard } from './guards/authorizeGuard.guard';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AdminGuard } from './guards/adminGuard';
+import { InstrutorGuard } from './guards/instrutorGuard';
+import { ProfessorGuard } from './guards/professorGuard';
 
 const routes: Routes = [
   {
@@ -19,7 +22,7 @@ const routes: Routes = [
     path: 'usuario',
     loadChildren: () =>
       import('./usuario/usuario.module').then((m) => m.UsuarioModule),
-    canActivate: [AuthorizeGuard],
+    canActivate: [AuthorizeGuard, InstrutorGuard],
   },
 
   {
@@ -28,7 +31,7 @@ const routes: Routes = [
       import('./alunos/alunos.module').then(
         (m) => m.AlunosModule
       ),
-    canActivate: [AuthorizeGuard],
+    canActivate: [AuthorizeGuard, ProfessorGuard],
   },
 
   {
@@ -37,7 +40,7 @@ const routes: Routes = [
       import('./cursos/cursos.module').then(
         (m) => m.CursosModule
       ),
-    canActivate: [AuthorizeGuard],
+    canActivate: [AuthorizeGuard, ProfessorGuard],
   },
 
   {
@@ -46,7 +49,7 @@ const routes: Routes = [
       import('./cursosgraduacao/cursosgraduacao.module').then(
         (m) => m.CursosGraduacaoModule
       ),
-    canActivate: [AuthorizeGuard],
+    canActivate: [AuthorizeGuard, ProfessorGuard],
   },
 
   {
@@ -55,7 +58,7 @@ const routes: Routes = [
       import('./tipocursos/tipocursos.module').then(
         (m) => m.TipoCursosModule
       ),
-    canActivate: [AuthorizeGuard],
+    canActivate: [AuthorizeGuard, ProfessorGuard],
   },
 
   {
@@ -64,7 +67,7 @@ const routes: Routes = [
       import('./turmacursos/turmacursos.module').then(
         (m) => m.TurmaCursosModule
       ),
-    canActivate: [AuthorizeGuard],
+    canActivate: [AuthorizeGuard, ProfessorGuard],
   },
 
   {
@@ -73,7 +76,7 @@ const routes: Routes = [
       import('./tipotransporte/tipotransporte.module').then(
         (m) => m.TipoTransporteModule
       ),
-    canActivate: [AuthorizeGuard],
+    canActivate: [AuthorizeGuard, ProfessorGuard],
   },
 
   {
@@ -82,7 +85,7 @@ const routes: Routes = [
       import('./equipecursos/equipecursos.module').then(
         (m) => m.EquipeCursosModule
       ),
-    canActivate: [AuthorizeGuard],
+    canActivate: [AuthorizeGuard, ProfessorGuard],
   },
 
   {
@@ -91,7 +94,7 @@ const routes: Routes = [
       import('./habilidades/habilidades.module').then(
         (m) => m.HabilidadesModule
       ),
-    canActivate: [AuthorizeGuard],
+    canActivate: [AuthorizeGuard, ProfessorGuard],
   },
   
   {
@@ -100,7 +103,7 @@ const routes: Routes = [
       import('./chamada/chamada.module').then(
         (m) => m.ChamadaModule
       ),
-    canActivate: [AuthorizeGuard],
+    canActivate: [AuthorizeGuard, InstrutorGuard],
   },
 
   { path: '**', redirectTo: '', pathMatch: 'full' },

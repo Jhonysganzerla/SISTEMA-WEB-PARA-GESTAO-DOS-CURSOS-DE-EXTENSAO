@@ -46,7 +46,20 @@ public class WebSecurity {
             .authorizeRequests()
                 .antMatchers( "/error/**").permitAll()
                 .antMatchers( "/auth/**").permitAll()
-//                .antMatchers( "/users/**").hasAnyRole("INSTRUTOR","PROFESSOR", "ADMIN")
+
+                .antMatchers( "/users/**").hasAnyRole("INSTRUTOR","PROFESSOR", "ADMIN")
+                .antMatchers( "/alunoturmacurso/**").hasAnyRole("INSTRUTOR","PROFESSOR", "ADMIN")
+                .antMatchers( "/chamada/**").hasAnyRole("INSTRUTOR","PROFESSOR", "ADMIN")
+
+                .antMatchers( HttpMethod.GET,"/cursosgraduacao/**").hasAnyRole("INSTRUTOR","PROFESSOR", "ADMIN")
+                .antMatchers( "/cursosgraduacao/**").hasAnyRole("PROFESSOR", "ADMIN")
+
+                .antMatchers( "/cursos/**").hasAnyRole("PROFESSOR", "ADMIN")
+                .antMatchers( "/equipe/**").hasAnyRole("PROFESSOR", "ADMIN")
+                .antMatchers( "/habilidades/**").hasAnyRole("PROFESSOR", "ADMIN")
+                .antMatchers( "/turmas/**").hasAnyRole("PROFESSOR", "ADMIN")
+                .antMatchers( "/tipocursos/**").hasAnyRole("PROFESSOR", "ADMIN")
+                .antMatchers( "/tipotransporte/**").hasAnyRole("PROFESSOR", "ADMIN")
 
                 .antMatchers("/h2-console/**",
                         "/swagger-resources/**",
