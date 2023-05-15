@@ -18,7 +18,7 @@ public class EquipeCursos {
     @Size(max = 50, message = "O tamanho do papel deve no máximo {max} caracteres")
     private String papel;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "transporte_id", referencedColumnName = "id")
     private TipoTransporte transporte;
 

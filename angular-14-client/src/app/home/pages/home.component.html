@@ -1,1 +1,43 @@
-  <h1 class="welcome-message">Bem vindo!</h1>
+<h1 class="welcome-message">Bem vindo!</h1>
+
+<div class="row text-center flex-row justify-content-center">
+  <div class="card cardwidth">
+    <div class="card-header">
+      <h2>Total de Turmas</h2>
+    </div>
+    <div class="card-body">
+      <p>Atualmente temos {{ dashContent["turmas"] }} turmas</p>
+    </div>
+  </div>
+
+  <div class="card cardwidth">
+    <div class="card-header">
+      <h2>Total de Alunos</h2>
+    </div>
+    <div class="card-body">
+      <p>Contendo {{ dashContent["alunos"] }} alunos matriculados</p>
+    </div>
+  </div>
+
+  <div class="card cardwidth">
+    <div class="card-header">
+      <h2>Total de Instrutores</h2>
+    </div>
+    <div class="card-body">
+      <p>
+        E {{ dashContent["instrutores"] }} {{ dashContent["instrutores"] > 1 ? 'instrutores' :'instrutor' }} cadastrados no sistema
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="row flex-row justify-content-center text-center">
+  <div class="col-6 card">
+    <div class="card-header">
+      <h2>Em Andamento e Finalizadas </h2>
+    </div>
+    <div class="card-body">
+      <p>Sendo {{ dashContent["cursos"] }} turmas em andamento e {{  dashContent["turmas"]  - dashContent["cursos"] }}  finalizadas</p>
+    </div>
+  </div>
+</div>

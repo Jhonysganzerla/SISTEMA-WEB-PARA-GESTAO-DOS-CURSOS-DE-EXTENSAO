@@ -16,6 +16,8 @@ public interface UsuariosRepository extends JpaRepository<Usuario, Long> {
     List<Usuario> findAllByRa(Sort sort, String ra);
     Page<Usuario> findAllByRa(Pageable pageable, String ra);
 
+    Long countUsuarioByTipo(String tipo);
+
 
 
 

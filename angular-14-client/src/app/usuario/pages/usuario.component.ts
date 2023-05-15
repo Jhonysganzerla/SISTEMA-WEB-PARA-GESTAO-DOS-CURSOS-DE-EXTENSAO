@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ConfirmDialogComponent } from '../../shared/confirmDialog.component';
 import { UsuarioService } from './../usuario.service';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-usuario',
@@ -13,11 +14,15 @@ export class UsuarioComponent implements OnInit {
 
   dataSource:any;
   filtro: string = '';
+  allowNew: boolean = true;
 
-  constructor(private usuarioService: UsuarioService, private router:Router, public dialog: MatDialog) { }
+  constructor(private usuarioService: UsuarioService, private router:Router, public dialog: MatDialog, private authService: AuthService) { }
   
   ngOnInit(): void {
     this.loadTable();
+
+    this.allowNew = !this.authService.temPermissao('ROLE_INSTRUTOR');
+
   }
 
   displayedColumns: string[] = ['id', 'nome', 'email', 'ra', 'tipo', 'editar', 'deletar'];

@@ -16,7 +16,6 @@ import { TelefoneMaskDirective } from '../shared/telefoneMask.directive';
   declarations: [
     UsuarioComponent,
     UsuarioCrudComponent,
-    TelefoneMaskDirective,
   ],
   providers: [
     UsuarioService,

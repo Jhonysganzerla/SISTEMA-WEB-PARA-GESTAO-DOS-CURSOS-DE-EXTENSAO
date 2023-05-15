@@ -1,15 +1,13 @@
-import { UsuarioService } from './../../../usuario/usuario.service';
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { TipoCursos } from 'src/app/tipocursos/model/tipocursos';
-import { TipoCursosService } from 'src/app/tipocursos/tipocursos.service';
+import { TipoTransporte } from 'src/app/tipotransporte/model/tipotransporte';
+import { TipoTransporteService } from 'src/app/tipotransporte/tipotransporte.service';
+import { Usuario } from 'src/app/usuario/model/usuario';
 import { EquipeCursosService } from '../../equipecursos.service';
 import { EquipeCursos } from '../../model/equipecursos';
-import { TipoTransporteService } from 'src/app/tipotransporte/tipotransporte.service';
-import { TipoTransporte } from 'src/app/tipotransporte/model/tipotransporte';
-import { Usuario } from 'src/app/usuario/model/usuario';
-import { UsuarioEquipe } from '../../model/usuarioequipe';
+import { UsuarioService } from './../../../usuario/usuario.service';
+import { catchError } from 'rxjs';
 
 @Component({
   selector: 'app-equipecursos-crud',
@@ -21,7 +19,7 @@ export class EquipeCursosCrudComponent implements OnInit {
   form: FormGroup
 
   isNew: boolean = true;
-  EquipecursosId: number;
+  equipeCursosId: number;
   transportesTipoOptions: Array<TipoTransporte>;
   usuariosOptions: Array<Usuario>;
 
@@ -47,19 +45,19 @@ export class EquipeCursosCrudComponent implements OnInit {
     this.form = this.formBuilder.group({
       id: [''],
       papel: ['', [Validators.required]],
-      transporte: [''],
+      transporte: [],
       usuarios: [[],],
     });
 
     this.route.params.subscribe((params) => {
       if (params['id']) {
         this.isNew = false;
-        this.EquipecursosId = +params['id'];
-        this.equipeCursosService.getEquipeCurso(this.EquipecursosId).subscribe((cursos) => {
+        this.equipeCursosId = +params['id'];
+        this.equipeCursosService.getEquipeCurso(this.equipeCursosId).subscribe((cursos) => {
           this.form.patchValue({
             id: cursos.id,
             papel: cursos.papel,
-            transporte: cursos.transporte,
+            transporte: cursos.transporte != null ? this.transportesTipoOptions.find(transporte => transporte.id === cursos.transporte.id) : null,
             usuarios: cursos.usuarios,
           });
         });
@@ -79,11 +77,13 @@ export class EquipeCursosCrudComponent implements OnInit {
       let usuario2 = new Usuario();
       usuario2.id = usuario.id;
       return usuario2
-    });
+    })
 
-    
     this.equipeCursosService.save(cursos).subscribe(() => {
       this.router.navigateByUrl('/equipe');
+    }, (catchError: any) => {
+      this.router.navigateByUrl('/equipe');
+      return null;
     });
   }
 

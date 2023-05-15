@@ -27,3 +27,41 @@
     background-color: #ffc107;
     color: #424242;
   }
+
+
+  .cardwidth{
+    width: 300px;
+  }
+
+  .card {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+    padding: 20px;
+    background-color: #fff;
+  }
+  
+  .card-header {
+    background-color: #f0f0f0;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+  }
+  
+  .card-header h2 {
+    margin: 0;
+    font-size: 18px;
+    color: #333;
+  }
+  
+  .card-body {
+    padding: 10px;
+  }
+  
+  .card-body p {
+    margin: 0;
+    font-size: 24px;
+    color: #666;
+  }
+  

@@ -5,6 +5,8 @@ import { CursosGraduacaoService } from './../../../cursosgraduacao/cursosgraduac
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from 'src/app/auth/auth.service';
+import { AlertService } from 'src/app/alert/alert.service';
 
 @Component({
   selector: 'app-usuario-crud',
@@ -19,13 +21,19 @@ export class UsuarioCrudComponent implements OnInit {
   usuarioId: number;
   cursosGraduacaoOptions: Array<CursosGraduacao>;
 
+  allowChangeTipo: boolean = true;
+
   constructor(
     private formBuilder: FormBuilder,
+    private authService: AuthService,
     private usuarioService: UsuarioService,
     private cursosGraduacaoService: CursosGraduacaoService,
+    private alertService: AlertService,
     private route: ActivatedRoute,
     private router: Router
-  ) {}
+  ) {
+
+  }
 
   ngOnInit() {
     this.cursosGraduacaoService.getCursosGraduacao().subscribe((cursos) => {
@@ -39,9 +47,13 @@ export class UsuarioCrudComponent implements OnInit {
       password: ['', !this.isNew ? Validators.required : ''],
       telefone: ['', Validators.required],
       ra: ['', Validators.required],
-      tipo: ['', Validators.required],
+      tipo: ['' , Validators.required],
       cursoGraduacao: ['', Validators.required],
     });
+
+    if(this.authService.temPermissao('ROLE_INSTRUTOR')){
+      this.form.get('tipo')?.disable()  
+    }
 
     this.route.params.subscribe((params) => {
       if (params['id']) {
@@ -56,7 +68,7 @@ export class UsuarioCrudComponent implements OnInit {
             telefone: usuario.telefone,
             ra: usuario.ra,
             tipo: usuario.tipo,
-            cursoGraduacao: usuario.cursoGraduacao != null ? this.cursosGraduacaoOptions.find(cursoGraduacao => cursoGraduacao.id === usuario.cursoGraduacao.id) : null,
+            cursoGraduacao: usuario.cursoGraduacao != null ? this.cursosGraduacaoOptions.find(cursoGraduacao => cursoGraduacao.id == usuario.cursoGraduacao.id) : null,
           });
         });
       }
@@ -64,9 +76,20 @@ export class UsuarioCrudComponent implements OnInit {
   }
 
   onSubmit() {
-    const usuario: Usuario = this.form.value;
+
     if (!this.form.valid) return;
+
+    if(this.allowChangeTipo && this.isNew){
+      this.alertService.errorList(['Instrutores não podem criar novos usuarios'])
+    } else if (this.allowChangeTipo && !this.isNew){
+      this.form.get('tipo')?.enable();
+    }
+
+    const usuario: Usuario = this.form.value;
+
     this.usuarioService.save(usuario).subscribe(() => {
+      this.router.navigateByUrl('/usuario');
+    }, (error) => {
       this.router.navigateByUrl('/usuario');
     });
   }

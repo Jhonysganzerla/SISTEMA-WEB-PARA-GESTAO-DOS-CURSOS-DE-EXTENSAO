@@ -16,9 +16,9 @@
       >
     </mat-form-field>
 
-    <mat-form-field appearance="outline" class="col-4 ml-auto">
+    <mat-form-field appearance="outline" class="col-4 ml-auto" >
       <mat-label>Tipo</mat-label>
-      <mat-select formControlName="tipo">
+      <mat-select formControlName="tipo" >
         <mat-option value="administrador">Administrador</mat-option>
         <mat-option value="professor">Professor</mat-option>
         <mat-option value="instrutor">Instrutor</mat-option>
@@ -47,8 +47,8 @@
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="col-3">
-      <mat-label>Telefone</mat-label>
-      <input  type="text" matInput telefoneMask maxlength="15" formControlName="telefone" />
+      <mat-label>Contato</mat-label>
+      <input  type="text" matInput maxlength="15" formControlName="telefone" />
       <mat-error *ngIf="form.get('telefone')!['invalid']"
         >Campo obrigatório</mat-error
       >

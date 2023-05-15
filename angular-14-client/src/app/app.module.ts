@@ -19,6 +19,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginService } from './login/login.service';
 import { ConfirmDialogComponent } from './shared/confirmDialog.component';
+import { TelefoneMaskDirective } from './shared/telefoneMask.directive';
 
 
 @NgModule({

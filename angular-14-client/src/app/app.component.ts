@@ -16,8 +16,6 @@ export class AppComponent implements OnDestroy{
     this.authService.isAuthenticated.subscribe((isAuthenticated) => {
       this.isAuthenticated = isAuthenticated;
 
-      
-
       this.pesoPermissao = 0;
 
       if(this.isAdmin())

@@ -2,7 +2,7 @@
 
 <h2 class="text-center">Usuário</h2>
 
-<button mat-raised-button color="primary" routerLink="/usuario/novo">
+<button mat-raised-button color="primary" routerLink="/usuario/novo" *ngIf="allowNew">
   <mat-icon>add</mat-icon>
   Adicionar novo
 </button>

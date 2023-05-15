@@ -14,6 +14,7 @@ import { TelefoneMaskDirective } from '../shared/telefoneMask.directive';
     AlunosComponent,
     AlunosCrudComponent,
     TelefoneMaskDirective,
+
   ],
   providers: [
     AlunosService,
