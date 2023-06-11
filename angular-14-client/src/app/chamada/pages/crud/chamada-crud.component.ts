@@ -244,9 +244,11 @@ export class ChamadaCrudComponent implements OnInit {
         totais[2] = relatorio.get(aluno)?.total.get('Feriado')-1;
         totais[3] = relatorio.get(aluno)?.total.get('Cancelado')-1;
 
-        totais[4] = Math.round(totais[0]  * 100 / (this.listaDeDatas.length)) + '%';
+        totais[4] = Math.round(totais[0]  * 100 / (this.listaDeDatas.length - totais[2])) + '%';
 
       return totais;
   }
 
 }
+
+

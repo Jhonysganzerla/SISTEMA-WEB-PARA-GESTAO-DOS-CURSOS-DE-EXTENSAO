@@ -26,7 +26,6 @@ public class Usuario implements UserDetails {
             regexp = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$")
     private String email;
     @NotNull(message = "A senha não pode ser nula")
-//    @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).*$" , message = "A senha deve conter pelo menos uma letra maiúscula, uma minúscula e um número")
     private String password;
 
     @NotNull(message = "O nome de usuário não pode ser nulo")
@@ -58,10 +57,6 @@ public class Usuario implements UserDetails {
     @ManyToOne
     @JoinColumn(name = "cursosgraduacao_id" , referencedColumnName = "id")
     private CursosGraduacao cursoGraduacao;
-
-
-    //    @Enumerated(EnumType.STRING)
-//    private AuthProvider provider;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "users_authorities",

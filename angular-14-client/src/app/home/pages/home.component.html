@@ -6,7 +6,7 @@
       <h2>Total de Turmas</h2>
     </div>
     <div class="card-body">
-      <p>Atualmente temos {{ dashContent["turmas"] }} turmas</p>
+      <p>Atualmente existem {{ dashContent["turmas"] }} turmas no sistema</p>
     </div>
   </div>
 
@@ -15,7 +15,7 @@
       <h2>Total de Alunos</h2>
     </div>
     <div class="card-body">
-      <p>Contendo {{ dashContent["alunos"] }} alunos matriculados</p>
+      <p>Atualmente existem {{ dashContent["alunos"] }} alunos matriculados</p>
     </div>
   </div>
 
@@ -24,8 +24,7 @@
       <h2>Total de Instrutores</h2>
     </div>
     <div class="card-body">
-      <p>
-        E {{ dashContent["instrutores"] }} {{ dashContent["instrutores"] > 1 ? 'instrutores' :'instrutor' }} cadastrados no sistema
+      <p> Atualmente existem {{ dashContent["instrutores"] }} {{ dashContent["instrutores"] > 1 ? 'instrutores cadastrados' :'instrutor cadastrado' }} no sistema
       </p>
     </div>
   </div>
@@ -37,7 +36,7 @@
       <h2>Em Andamento e Finalizadas </h2>
     </div>
     <div class="card-body">
-      <p>Sendo {{ dashContent["cursos"] }} turmas em andamento e {{  dashContent["turmas"]  - dashContent["cursos"] }}  finalizadas</p>
+      <p>Atualmente existem {{ dashContent["cursos"] }} turmas em andamento e {{  dashContent["turmas"]  - dashContent["cursos"] }} finalizadas</p>
     </div>
   </div>
 </div>

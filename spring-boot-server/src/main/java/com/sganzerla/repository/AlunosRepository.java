@@ -9,4 +9,6 @@ public interface AlunosRepository extends JpaRepository<Alunos, Long> {
 
     List<Alunos> findAllByIdIn(List<Long> idList);
 
+    List<Alunos> findAllByOrderByIdDesc();
+
 }

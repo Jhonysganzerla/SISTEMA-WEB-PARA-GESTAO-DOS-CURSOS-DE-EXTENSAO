@@ -105,4 +105,9 @@ public class AlunosServiceImpl extends CrudServiceImpl<Alunos, Long>  implements
         }
     }
 
+
+    @Override
+    public List<Alunos> findAll() {
+        return alunosRepository.findAllByOrderByIdDesc();
+    }
 }
